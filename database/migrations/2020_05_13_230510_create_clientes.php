@@ -15,6 +15,7 @@ class CreateClientes extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_user');
             $table->string('nome', 250);
             $table->string('cpf', 14);
             $table->string('rg', 9);
@@ -23,6 +24,8 @@ class CreateClientes extends Migration
             $table->string('email', 255);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 
