@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Schema;
 use App\Categoria;
 use App\CategoriasProdutos;
 use App\Produto;
+use App\Plataforma;
+use App\PlataformaProduto;
 
 class Teste extends Migration
 {
@@ -46,6 +48,34 @@ class Teste extends Migration
         $categorias_produtos->id_produto = Produto::find(2)->id;
         $categorias_produtos->id_categoria = Categoria::find(1)->id;
         $categorias_produtos->save();
+
+        $plataformas = new Plataforma();
+        $plataformas->nome = "PC";
+        $plataformas->save();
+
+        $plataformas = new Plataforma();
+        $plataformas->nome = "PS4";
+        $plataformas->save();
+
+        $plataformaProduto = new PlataformaProduto();
+        $plataformaProduto->id_produto = Produto::find(1)->id;
+        $plataformaProduto->id_plataforma = Categoria::find(1)->id;
+        $plataformaProduto->save();
+
+        $plataformaProduto = new PlataformaProduto();
+        $plataformaProduto->id_produto = Produto::find(1)->id;
+        $plataformaProduto->id_plataforma = Categoria::find(2)->id;
+        $plataformaProduto->save();
+
+        $plataformaProduto = new PlataformaProduto();
+        $plataformaProduto->id_produto = Produto::find(2)->id;
+        $plataformaProduto->id_plataforma = Categoria::find(1)->id;
+        $plataformaProduto->save();
+
+        $plataformaProduto = new PlataformaProduto();
+        $plataformaProduto->id_produto = Produto::find(2)->id;
+        $plataformaProduto->id_plataforma = Categoria::find(2)->id;
+        $plataformaProduto->save();
     }
 
     /**
