@@ -31,5 +31,6 @@ class CreateCidades extends Migration
     {
         Schema::dropIfExists('cidades', function(Blueprint $table){
             $table->dropSoftDeletes(); 
+        });
     }
 }

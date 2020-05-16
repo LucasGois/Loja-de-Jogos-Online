@@ -30,5 +30,6 @@ class CreatePlataformas extends Migration
     {
         Schema::dropIfExists('plataformas', function(Blueprint $table){
             $table->dropSoftDeletes(); 
+        });
     }
 }

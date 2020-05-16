@@ -38,5 +38,6 @@ class CreateClientes extends Migration
     {
         Schema::dropIfExists('clientes', function(Blueprint $table){
             $table->dropSoftDeletes(); 
+        });
     }
 }
