@@ -30,5 +30,6 @@ class CreateCategoriasProduto extends Migration
     {
         Schema::dropIfExists('categorias_produto', function(Blueprint $table){
             $table->dropSoftDeletes();
+        });
     }
 }
