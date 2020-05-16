@@ -12,4 +12,8 @@ class Produto extends Model
     public function categorias() {
         return $this->belongsToMany('App\Categoria', 'categorias_produtos', 'id_produto', 'id_categoria')->withTimestamps();
     }
+
+    public function fotos(){
+        return $this->hasMany('App\FotoProduto', 'id_produto', 'id');
+    }
 }
