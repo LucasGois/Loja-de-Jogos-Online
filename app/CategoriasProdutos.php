@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CategoriaProduto extends Model
+class CategoriasProdutos extends Model
 {
-    protected $table = "categorias_produto";
+    protected $table = "categorias_produtos";
     protected $primaryKey = "id";
 }
