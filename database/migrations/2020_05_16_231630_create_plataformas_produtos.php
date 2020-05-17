@@ -18,6 +18,7 @@ class CreatePlataformasProdutos extends Migration
             $table->unsignedBigInteger('id_plataforma');
             $table->unsignedBigInteger('id_produto');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('id_plataforma')->references('id')->on('plataformas');
             $table->foreign('id_produto')->references('id')->on('produtos');
@@ -31,6 +32,8 @@ class CreatePlataformasProdutos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plataformas_produtos');
+        Schema::dropIfExists('plataformas_produtos', function(Blueprint $table){
+            $table->dropSoftDeletes(); 
+        });
     }
 }
