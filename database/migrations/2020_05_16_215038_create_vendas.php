@@ -17,10 +17,12 @@ class CreateVendas extends Migration
             $table->id();
             $table->double('total', 15, 2);
             $table->unsignedBigInteger('id_cliente');
+            $table->unsignedBigInteger('id_endereco');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('id_cliente')->references('id')->on('clientes');
+            $table->foreign('id_endereco')->references('id')->on('enderecos');
         });
     }
 
@@ -31,6 +33,8 @@ class CreateVendas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendas');
+        Schema::dropIfExists('vendas', function(Blueprint $table){
+            $table->dropSoftDeletes(); 
+        });
     }
 }

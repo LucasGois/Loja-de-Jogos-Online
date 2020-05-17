@@ -32,6 +32,8 @@ class CreateProdutos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('produtos');
+        Schema::dropIfExists('produtos', function(Blueprint $table){
+            $table->dropSoftDeletes(); 
+        });
     }
 }

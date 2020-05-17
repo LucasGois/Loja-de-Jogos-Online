@@ -20,4 +20,8 @@ class Produto extends Model
     public function plataformas() {
         return $this->belongsToMany('App\Plataforma', 'plataformas_produtos', 'id_produto', 'id_plataforma')->withTimestamps();
     }
+
+    public function vendas() {
+        return $this->belongsToMany('App\Venda', 'produtos_vendas', 'id_produto', 'id_venda')->withTimestamps();
+    }
 }
