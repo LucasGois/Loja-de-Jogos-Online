@@ -10,8 +10,8 @@ use App\Cidade;
 class CidadeController extends Controller
 {
     public function lista() {
-        $cidades = DB::table('cidades')->simplePaginate(1);
-        
+        $cidades = DB::table('cidades')->simplePaginate(15);
+
         return view('cidade.lista',[
             'cidades' => $cidades
         ]);

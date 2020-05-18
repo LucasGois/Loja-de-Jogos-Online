@@ -22,5 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Cidade
-Route::get('/cidade/lista', 'CidadeController@lista');
+Route::get('/cidade/lista', 'CidadeController@lista')->name('cidade_lista');
 Route::get('/cidade/cadastro', 'CidadeController@cadastro')->name('cidade_cadastro');
