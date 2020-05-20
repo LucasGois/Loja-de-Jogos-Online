@@ -9,15 +9,59 @@ use App\Cidade;
 
 class CidadeController extends Controller
 {
-    public function lista() {
-        $cidades = DB::table('cidades')->simplePaginate(15);
+    public function lista(Request $req) {
+        $cidades = new Cidade();
 
-        return view('cidade.lista',[
-            'cidades' => $cidades
+        $ordem = $req->query('ordem', 'id');
+        $busca = $req->query('busca', '');
+
+        $cidades = $cidades->orderBy($ordem, 'asc');
+        $cidades = $cidades->where($ordem, 'LIKE', "%$busca%");
+
+        $vetor_parametros = [];
+        $vetor_parametros['ordem'] = $ordem;
+        $vetor_parametros['busca'] = $busca;
+
+        $cidades = $cidades->paginate(2)->appends($vetor_parametros);
+
+        return view('cidade.lista', [
+            'cidades' => $cidades,
+            'ordem' => $ordem,
+            'busca' => $busca
         ]);
     }
 
-    public function cadastro() {
-        return view('cidade.cadastro');
+    public function cadastro($id = 0) {
+
+        if($id > 0){
+            // Alterar
+            $cidade = Cidade::find($id);
+        } else {
+            // Adicionar
+            $cidade = new Cidade();
+        }
+
+        return view('cidade.cadastro', [
+            'cidade' => $cidade
+        ]);
+    }
+
+    public function salvar(Request $req, $id = 0) {
+
+        $req->validate([
+            'nome' => 'required|min:3|unique:cidades,nome'
+        ]);
+
+        if($id > 0){
+            $cidade = Cidade::find($id);
+        } else {
+            $cidade = new Cidade();
+        }
+
+        $cidade->nome = $req->input('nome');
+        $cidade->estado = $req->input('estado');
+        $cidade->save();
+
+        return redirect()->route('cidade_lista');
     }
 }

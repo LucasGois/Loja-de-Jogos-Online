@@ -7,47 +7,59 @@
 
             <div class="card">
 
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-10">
-                        <h2>
-                            Lista de <b>Cidades</b>
-                        </h2>
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-12 col-md-5">
+                            <h2>Lista de <b>Cidades</b></h2>
+                        </div>
+                        
+                        <div class="col">
+                            <form>
+                                <div class="input-group">
+                                    <input type="hidden" name="ordem" value="{{ $ordem }}">
+                                    <input class="btn btn-primary" type="submit" value="Buscar">
+                                    <input class="form-control" type="text" name="busca" autocomplete="off">
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="col col-md-2 text-right">
+                            <a href="{{ route('cidade_cadastro') }}" class="btn btn-success">Adicionar</a>
+                        </div>
                     </div>
-                    <div class="col-2 text-right">
-                        <button type="button" class="btn btn-success">Add</button>
+                    <div class="row">
+
                     </div>
                 </div>
-            </div>
-            <div class="card-body">
-            
-                <table class="table">
-                    <thead>
-                        <tr class="row">
-                            <th class="text-center col-sm-2 col-md-1">ID</th>
-                            <th class="text-center col-sm-5 col-md-6">Nome</th>
-                            <th class="text-center col-sm-3 col-md-3">Estado</th>
-                            <th class="text-center col-sm-2 col-md-2" >Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($cidades as $cidade)
-                            <tr class="row">
-                                <th class="text-center col-sm-2 col-md-1">{{ $cidade->id }}</td>
-                                <td class="text-center col-sm-5 col-md-6">{{ $cidade->nome }}</td>
-                                <td class="text-center col-sm-3 col-md-3">{{ $cidade->estado }}</td>
-                                <td class="text-center col-sm-2 col-md-2">
-                                    <button type="button" class="btn btn-sm btn-warning">Alterar</button>
-                                    <button type="button" class="btn btn-sm btn-danger">Excluir</button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="card-body">
                 
-                {{ $cidades->links() }}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><a href="?ordem=id&busca={{ $busca }}">ID</a></th>
+                                <th class="text-center"><a href="?ordem=nome&busca={{ $busca }}">Nome</a></th>
+                                <th class="text-center"><a href="?ordem=estado&busca={{ $busca }}">Estado</a></th>
+                                <th class="text-center">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($cidades as $cidade)
+                                <tr>
+                                    <th class="text-center">{{ $cidade->id }}</td>
+                                    <td class="text-center">{{ $cidade->nome }}</td>
+                                    <td class="text-center">{{ $cidade->estado }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ route('cidade_cadastro', $cidade->id) }}" class="btn btn-sm btn-warning">Alterar</a>
+                                        <a href="{{ route('cidade_cadastro') }}" class="btn btn-sm btn-danger">Excluir</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    
+                    {{ $cidades->links() }}
 
-            </div>
+                </div>
 
             </div>
 
