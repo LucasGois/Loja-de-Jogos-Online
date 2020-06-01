@@ -64,4 +64,10 @@ class CidadeController extends Controller
 
         return redirect()->route('cidade_lista');
     }
+
+    public function excluir($id){
+        $cidade = Cidade::find($id);
+        $cidade->delete();
+        return redirect()->route('cidade_lista');
+    }
 }

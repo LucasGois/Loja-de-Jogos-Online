@@ -50,7 +50,7 @@
                                     <td class="text-center">{{ $cidade->estado }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('cidade_cadastro', $cidade->id) }}" class="btn btn-sm btn-warning">Alterar</a>
-                                        <a href="{{ route('cidade_cadastro') }}" class="btn btn-sm btn-danger">Excluir</a>
+                                        <a class="btn btn-sm btn-danger" href="#" onclick="exclui( {{ $cidade->id }} )">Excluir</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -66,4 +66,13 @@
         </div>
     </div>
 </div>
+
+<script>
+	function exclui(id){
+		if (confirm("Deseja excluir a cidade de id: " + id + "?")){
+			location.href = "/cidade/excluir/" + id;
+		}
+	}
+</script>
+
 @endsection
