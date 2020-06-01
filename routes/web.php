@@ -25,8 +25,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/cidade/lista', 'CidadeController@lista')->name('cidade_lista');
 Route::get('/cidade/cadastro/{id?}', 'CidadeController@cadastro')->name('cidade_cadastro');
 Route::post('/cidade/salvar/{id?}', 'CidadeController@salvar')->name('cidade_salvar');
+Route::get('/cidade/excluir/{id}', 'CidadeController@excluir')->name('cidade_excluir');
 
 // Categoria
 Route::get('/categoria/lista', 'CategoriaController@lista')->name('categoria_lista');
 Route::get('/categoria/cadastro/{id?}', 'CategoriaController@cadastro')->name('categoria_cadastro');
 Route::post('/categoria/salvar/{id?}', 'CategoriaController@salvar')->name('categoria_salvar');
+Route::get('/categoria/excluir/{id}', 'CategoriaController@excluir')->name('categoria_excluir');

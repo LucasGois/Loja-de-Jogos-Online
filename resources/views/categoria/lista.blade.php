@@ -48,7 +48,7 @@
                                     <td class="text-center">{{ $categoria->nome }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('categoria_cadastro', $categoria->id) }}" class="btn btn-sm btn-warning">Alterar</a>
-                                        <a href="{{ route('categoria_cadastro') }}" class="btn btn-sm btn-danger">Excluir</a>
+                                        <a class="btn btn-sm btn-danger" href="#" onclick="exclui( {{ $categoria->id }} )">Excluir</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -64,4 +64,13 @@
         </div>
     </div>
 </div>
+
+<script>
+	function exclui(id){
+		if (confirm("Deseja excluir a categoria de id: " + id + "?")){
+			location.href = "/categoria/excluir/" + id;
+		}
+	}
+</script>
+
 @endsection
