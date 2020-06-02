@@ -32,3 +32,9 @@ Route::get('/categoria/lista', 'CategoriaController@lista')->name('categoria_lis
 Route::get('/categoria/cadastro/{id?}', 'CategoriaController@cadastro')->name('categoria_cadastro');
 Route::post('/categoria/salvar/{id?}', 'CategoriaController@salvar')->name('categoria_salvar');
 Route::get('/categoria/excluir/{id}', 'CategoriaController@excluir')->name('categoria_excluir');
+
+// Produto
+Route::get('/produto/lista', 'ProdutoController@lista')->name('produto_lista');
+Route::get('/produto/cadastro/{id?}', 'ProdutoController@cadastro')->name('produto_cadastro');
+Route::post('/produto/salvar/{id?}', 'ProdutoController@salvar')->name('produto_salvar');
+Route::get('/produto/excluir/{id}', 'ProdutoController@excluir')->name('produto_excluir');

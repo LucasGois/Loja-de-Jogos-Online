@@ -22,7 +22,7 @@ class CidadeController extends Controller
         $vetor_parametros['ordem'] = $ordem;
         $vetor_parametros['busca'] = $busca;
 
-        $cidades = $cidades->paginate(2)->appends($vetor_parametros);
+        $cidades = $cidades->paginate(pagSize())->appends($vetor_parametros);
 
         return view('cidade.lista', [
             'cidades' => $cidades,
