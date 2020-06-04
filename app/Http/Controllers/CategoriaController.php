@@ -63,4 +63,10 @@ class CategoriaController extends Controller
 
         return redirect()->route('categoria_lista');
     }
+
+    public function excluir($id){
+        $categoria = Categoria::find($id);
+        $categoria->delete();
+        return redirect()->route('categoria_lista');
+    }
 }
