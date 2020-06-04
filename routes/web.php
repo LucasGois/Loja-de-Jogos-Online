@@ -38,3 +38,9 @@ Route::get('/endereco/lista', 'EnderecoController@lista')->name('endereco_lista'
 Route::get('/endereco/cadastro/{id?}', 'EnderecoController@cadastro')->name('endereco_cadastro');
 Route::post('/endereco/salvar/{id?}', 'EnderecoController@salvar')->name('endereco_salvar');
 Route::get('/endereco/excluir/{id}', 'EnderecoController@excluir')->name('endereco_excluir');
+
+// Produto
+Route::get('/produto/lista', 'ProdutoController@lista')->name('produto_lista');
+Route::get('/produto/cadastro/{id?}', 'ProdutoController@cadastro')->name('produto_cadastro');
+Route::post('/produto/salvar/{id?}', 'ProdutoController@salvar')->name('produto_salvar');
+Route::get('/produto/excluir/{id}', 'ProdutoController@excluir')->name('produto_excluir');

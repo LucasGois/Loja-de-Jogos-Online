@@ -22,7 +22,7 @@ class CategoriaController extends Controller
         $vetor_parametros['ordem'] = $ordem;
         $vetor_parametros['busca'] = $busca;
 
-        $categorias = $categorias->paginate(2)->appends($vetor_parametros);
+        $categorias = $categorias->paginate(pagSize())->appends($vetor_parametros);
 
         return view('categoria.lista', [
             'categorias' => $categorias,
