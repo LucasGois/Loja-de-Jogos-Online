@@ -18,9 +18,9 @@ class CreateClientes extends Migration
             $table->unsignedBigInteger('id_user');
             $table->string('nome', 250);
             $table->string('cpf', 14);
-            $table->string('rg', 9);
+            $table->string('rg', 12);
             $table->timestamp('data_nascimento');
-            $table->string('telefone', 11);
+            $table->string('telefone', 13);
             $table->string('email', 255);
             $table->timestamps();
             $table->softDeletes();
