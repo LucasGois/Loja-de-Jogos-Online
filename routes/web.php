@@ -32,3 +32,9 @@ Route::get('/categoria/lista', 'CategoriaController@lista')->name('categoria_lis
 Route::get('/categoria/cadastro/{id?}', 'CategoriaController@cadastro')->name('categoria_cadastro');
 Route::post('/categoria/salvar/{id?}', 'CategoriaController@salvar')->name('categoria_salvar');
 Route::get('/categoria/excluir/{id}', 'CategoriaController@excluir')->name('categoria_excluir');
+
+// Endereco
+Route::get('/endereco/lista', 'EnderecoController@lista')->name('endereco_lista');
+Route::get('/endereco/cadastro/{id?}', 'EnderecoController@cadastro')->name('endereco_cadastro');
+Route::post('/endereco/salvar/{id?}', 'EnderecoController@salvar')->name('endereco_salvar');
+Route::get('/endereco/excluir/{id}', 'EnderecoController@excluir')->name('endereco_excluir');
