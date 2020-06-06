@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             CidadeSeeder::class,
             EnderecoSeeder::class,
             ProdutoSeeder::class,
+            FotosProdutoSeeder::class,
         ]);
     }
 }

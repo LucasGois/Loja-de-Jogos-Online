@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use App\Produto;
+use App\FotoProduto;
 
 class ProdutoController extends Controller{
 
@@ -59,39 +61,43 @@ class ProdutoController extends Controller{
 
         if($id > 0){
             $produto = Produto::find($id);
+            $fotoProduto = new FotoProduto();
         } else {
             $produto = new Produto();
+            $fotoProduto = new FotoProduto();
         }
 
-        $imagem = $req->file('upload');
-        $nome = $req->input('nome');
-    
-        
+        // Produto
         $produto->nome = $req->input('nome');
         $produto->descricao = $req->input('descricao');
         $produto->estoque = $req->input('estoque');
         $produto->valor = $req->input('valor');
-        $produto->imagem = $nome;
-
-        $produto->save();
 
         $slug = $produto->nome . " " . $produto->id;
-        $slug = Str::of($slug)->slug('-');
-        $slug = $slug . "." . $imagem->extension();
+        $slug = Str::slug($slug, '-');
+        // $slug = $slug . "." . $imagem->extension();
+        $produto->slug = $slug;
 
-        $slug = $imagem->storeAs('imagens_produtos', $slug);
-
-        $produto->imagem = "upload/$slug";
         if ($produto->save()){
             $msg = "Produto adicionado!";
         } else {
             $msg = "Produto não foi cadastrado. Tente novamente!!";
         }
 
+        // Imagem
+        $imagem = $req->file('upload');
+    	$nome_arquivo = $produto->nome . " " . $produto->id;
+    	$nome_arquivo = Str::of($nome_arquivo)->slug('-');
+    	$nome_arquivo = $nome_arquivo . "." . $imagem->extension();
+    	$nome_arquivo = $imagem->storeAs('imagens_produtos', $nome_arquivo);
+
+        // FotoProduto
+        $fotoProduto->id_produto = $produto->id;
+        $fotoProduto->nome = "storage/$nome_arquivo";
+        $fotoProduto->save();
 
         return redirect()->route('produto_lista');
     }
-
 
     public function excluir($id){
         $produto = Produto::find($id);
