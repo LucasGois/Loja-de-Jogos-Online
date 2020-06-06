@@ -36,6 +36,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th class="text-center">Imagem</th>
                                 <th class="text-center"><a href="?ordem=id&busca={{ $busca }}">ID</a></th>
                                 <th class="text-center"><a href="?ordem=nome&busca={{ $busca }}">Nome</a></th>
                                 <th class="text-center"><a href="?ordem=valor&busca={{ $busca }}">Valor</a></th>
@@ -45,6 +46,13 @@
                         <tbody>
                             @foreach ($produtos as $produto)
                                 <tr>
+                                    <th class="text-center">
+                                        @if (count($produto->fotos) > 0)
+                                            <img src="{{asset($produto->fotos[0]->nome)}}" width="100">
+                                        @else
+                                            <img src="{{''}}">
+                                        @endif
+                                    </td>
                                     <th class="text-center">{{ $produto->id }}</td>
                                     <td class="text-center">{{ $produto->nome }}</td>
                                     <td class="text-center">{{ $produto->valor }}</td>

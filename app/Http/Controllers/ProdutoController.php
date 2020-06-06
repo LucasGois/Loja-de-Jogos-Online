@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use App\Produto;
+use App\FotoProduto;
 
 class ProdutoController extends Controller{
 
@@ -29,6 +31,78 @@ class ProdutoController extends Controller{
             'ordem' => $ordem,
             'busca' => $busca
         ]);
+    }
+
+     public function cadastro($id = 0) {
+
+        if($id > 0){
+            // Alterar
+            $produto = Produto::find($id);
+        } else {
+            // Adicionar
+            $produto = new Produto();
+        }
+
+       // $cidades = Cidade::all();
+        
+        return view('produto.cadastro', [
+            'produto' => $produto,
+            //'cidades'=>$cidades
+        ]);
+    }
+
+    public function salvar(Request $req, $id = 0) {
+
+        $req->validate([
+            'nome' => 'required|min:3|unique:cidades,nome',
+            'valor' => 'required|numeric',
+            
+        ]);
+
+        if($id > 0){
+            $produto = Produto::find($id);
+            $fotoProduto = new FotoProduto();
+        } else {
+            $produto = new Produto();
+            $fotoProduto = new FotoProduto();
+        }
+
+        // Produto
+        $produto->nome = $req->input('nome');
+        $produto->descricao = $req->input('descricao');
+        $produto->estoque = $req->input('estoque');
+        $produto->valor = $req->input('valor');
+
+        $slug = $produto->nome . " " . $produto->id;
+        $slug = Str::slug($slug, '-');
+        // $slug = $slug . "." . $imagem->extension();
+        $produto->slug = $slug;
+
+        if ($produto->save()){
+            $msg = "Produto adicionado!";
+        } else {
+            $msg = "Produto não foi cadastrado. Tente novamente!!";
+        }
+
+        // Imagem
+        $imagem = $req->file('upload');
+    	$nome_arquivo = $produto->nome . " " . $produto->id;
+    	$nome_arquivo = Str::of($nome_arquivo)->slug('-');
+    	$nome_arquivo = $nome_arquivo . "." . $imagem->extension();
+    	$nome_arquivo = $imagem->storeAs('imagens_produtos', $nome_arquivo);
+
+        // FotoProduto
+        $fotoProduto->id_produto = $produto->id;
+        $fotoProduto->nome = "storage/$nome_arquivo";
+        $fotoProduto->save();
+
+        return redirect()->route('produto_lista');
+    }
+
+    public function excluir($id){
+        $produto = Produto::find($id);
+        $produto->delete();
+        return redirect()->route('produto_lista');
     }
 
     public function add_carrinho($id)
