@@ -7,9 +7,12 @@ use Illuminate\Support\Facades\DB;
 
 use App\Endereco;
 use App\Cidade;
+use Auth;
+
 
 class EnderecoController extends Controller
 {
+    
     public function lista(Request $req) {
         $enderecos = new Endereco();
 
@@ -63,7 +66,10 @@ class EnderecoController extends Controller
         }
         
         $id_cidade = $req->input('id_cidade');
+        $cliente = (DB::table('clientes')->where('id_user', Auth::user()->id)->first());
+        $id_cliente = (DB::table('clientes')->where('id_user', Auth::user()->id)->first())->id;
 
+        $endereco->id_cliente = $id_cliente;
         $endereco->id_cidade = $id_cidade;
         $endereco->descricao = $req->input('descricao');
         $endereco->logradouro = $req->input('logradouro');

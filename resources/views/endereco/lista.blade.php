@@ -36,6 +36,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th class="text-center"><a href="?ordem=id_cidade&busca={{ $busca }}">Cidade</a></th>
                                 <th class="text-center"><a href="?ordem=id&busca={{ $busca }}">ID</a></th>
                                 <th class="text-center"><a href="?ordem=descricao&busca={{ $busca }}">Descrição</a></th>
                                 <th class="text-center"><a href="?ordem=logradouro&busca={{ $busca }}">Logradouro</a></th>
@@ -47,6 +48,7 @@
                         <tbody>
                             @foreach ($enderecos as $endereco)
                                 <tr>
+                                    <th class="text-center">{{ $endereco->cidade->nome }}</td>
                                     <th class="text-center">{{ $endereco->id }}</td>
                                     <td class="text-center">{{ $endereco->descricao }}</td>
                                     <td class="text-center">{{ $endereco->logradouro }}</td>
