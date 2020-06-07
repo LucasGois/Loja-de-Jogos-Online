@@ -23,10 +23,14 @@
                             </form>
                         </div>
                         
-                        <div class="col col-md-2 text-right">
-                            <a href="{{ route('produto_cadastro') }}" class="btn btn-success">Adicionar</a>
-                        </div>
+                        @if ($admin)
+                            <div class="col col-md-2 text-right">
+                                <a href="{{ route('produto_cadastro') }}" class="btn btn-success">Adicionar</a>
+                            </div>
+                        @endif
+
                     </div>
+
                     <div class="row">
 
                     </div>
@@ -56,10 +60,16 @@
                                     <th class="text-center">{{ $produto->id }}</td>
                                     <td class="text-center">{{ $produto->nome }}</td>
                                     <td class="text-center">{{ $produto->valor }}</td>
-                                    <td class="text-center">
-                                        <a href="{{ route('produto_cadastro', $produto->id) }}" class="btn btn-sm btn-warning">Alterar</a>
-                                        <a class="btn btn-sm btn-danger" href="#" onclick="exclui( {{ $produto->id }} )">Excluir</a>
-                                    </td>
+                                    @if ($admin)
+                                        <td class="text-center">
+                                            <a href="{{ route('produto_cadastro', $produto->id) }}" class="btn btn-sm btn-warning">Alterar</a>
+                                            <a class="btn btn-sm btn-danger" href="#" onclick="exclui( {{ $produto->id }} )">Excluir</a>
+                                        </td>
+                                    @else
+                                        <td class="text-center">
+                                            <a class="btn btn-sm btn-primary" href="#" onclick="addCarrinho( {{ $produto->id }} )">Add Carrinho</a>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
@@ -79,6 +89,11 @@
 	function exclui(id){
 		if (confirm("Deseja excluir a produto de id: " + id + "?")){
 			location.href = "/produto/excluir/" + id;
+		}
+	}
+
+	function addCarrinho(id){
+		if (confirm("Add carrinho: " + id + "?")){
 		}
 	}
 </script>

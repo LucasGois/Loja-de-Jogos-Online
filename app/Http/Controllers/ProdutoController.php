@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 
 use App\Produto;
 use App\FotoProduto;
+use App\Http\Controllers\AppController;
 
 class ProdutoController extends Controller{
 
@@ -29,7 +30,8 @@ class ProdutoController extends Controller{
         return view('produto.lista', [
             'produtos' => $produtos,
             'ordem' => $ordem,
-            'busca' => $busca
+            'busca' => $busca,
+            'admin' => AppController::ehAdmin()
         ]);
     }
 

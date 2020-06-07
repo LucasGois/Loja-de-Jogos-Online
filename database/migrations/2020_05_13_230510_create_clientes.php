@@ -20,6 +20,7 @@ class CreateClientes extends Migration
             $table->string('rg', 12);
             $table->timestamp('data_nascimento');
             $table->string('telefone', 13);
+            $table->boolean('admin')->default(false);
             $table->timestamps();
             $table->softDeletes();
 
