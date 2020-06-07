@@ -26,7 +26,7 @@ class EnderecoController extends Controller
         $vetor_parametros['ordem'] = $ordem;
         $vetor_parametros['busca'] = $busca;
 
-        $enderecos = $enderecos->paginate(2)->appends($vetor_parametros);
+        $enderecos = $enderecos->paginate($this->pag_size)->appends($vetor_parametros);
 
         return view('endereco.lista', [
             'enderecos' => $enderecos,
@@ -66,7 +66,6 @@ class EnderecoController extends Controller
         }
         
         $id_cidade = $req->input('id_cidade');
-        $cliente = (DB::table('clientes')->where('id_user', Auth::user()->id)->first());
         $id_cliente = (DB::table('clientes')->where('id_user', Auth::user()->id)->first())->id;
 
         $endereco->id_cliente = $id_cliente;
