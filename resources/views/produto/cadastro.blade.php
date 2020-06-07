@@ -76,10 +76,10 @@
                         </div>
 
                         <!-- Imagem -->
-                        <div class="form-group row">
+                        <div class="form-group row ">
                             <label for="upload" class="col-md-4 col-form-label text-md-right">Imagem</label>
-                            <div class="col-md-6"> 
-                                <input id="upload" type="file" class="form-control @error('upload') is-invalid @enderror" name="upload">
+                            <div class="col-md-6 "> 
+                                <input id="upload" type="file" class="form-control-secundary @error('upload') is-invalid @enderror" name="upload" >
 
                                 @error('upload')
                                     <span class="invalid-feedback" role="alert">
