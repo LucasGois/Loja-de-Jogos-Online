@@ -12,6 +12,10 @@ class Endereco extends Model
     protected $table = "enderecos";
     protected $primaryKey = "id";
 
+    public function cliente(){
+        return $this->belongsTo('App\Cliente', 'id_cliente', 'id');
+    }
+
     public function vendas(){
         return $this->hasMany('App\Venda', 'id_endereco', 'id');
     }

@@ -59,7 +59,7 @@
                                     </td>
                                     <th class="text-center">{{ $produto->id }}</td>
                                     <td class="text-center">{{ $produto->nome }}</td>
-                                    <td class="text-center">{{ $produto->valor }}</td>
+                                    <td class="text-center">{{ number_format($produto->valor, 2, '.', '') }}</td>
                                     @if ($admin)
                                         <td class="text-center">
                                             <a href="{{ route('produto_cadastro', $produto->id) }}" class="btn btn-sm btn-warning">Alterar</a>
@@ -86,6 +86,7 @@
 </div>
 
 <script>
+
 	function exclui(id){
 		if (confirm("Deseja excluir a produto de id: " + id + "?")){
 			location.href = "/produto/excluir/" + id;
@@ -94,8 +95,10 @@
 
 	function addCarrinho(id){
 		if (confirm("Add carrinho: " + id + "?")){
+			location.href = "/venda/adicionar/" + id;
 		}
 	}
+
 </script>
 
 @endsection

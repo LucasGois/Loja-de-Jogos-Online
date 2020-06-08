@@ -13,16 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+*/
 
 Auth::routes();
 
+Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Produto
 Route::get('/produto/lista', 'ProdutoController@lista')->name('produto_lista');
+
+Route::middleware(['auth'])->group(function(){
+
+    // Venda
+    Route::get('/venda/lista', 'VendaController@lista')->name('venda_lista');
+    Route::post('/venda/salvar/{id?}', 'VendaController@salvar')->name('venda_salvar');
+    // Carrinho
+    Route::get('/venda/adicionar/{id_produto}', 'VendaController@adicionar')->name('venda_adicionar');
+    Route::get('/venda/remover/{id_produto}', 'VendaController@remover')->name('venda_remover');
+    Route::get('/venda/limpar', 'VendaController@limpar')->name('venda_limpar');
+
+});
 
 Route::middleware(['admin'])->group(function(){
 
@@ -45,6 +60,7 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/endereco/excluir/{id}', 'EnderecoController@excluir')->name('endereco_excluir');
 
     // Produto
+    // produto_lista
     Route::get('/produto/cadastro/{id?}', 'ProdutoController@cadastro')->name('produto_cadastro');
     Route::post('/produto/salvar/{id?}', 'ProdutoController@salvar')->name('produto_salvar');
     Route::get('/produto/excluir/{id}', 'ProdutoController@excluir')->name('produto_excluir');

@@ -15,7 +15,6 @@
                     <form method="POST" action="{{ route('produto_salvar', $produto->id) }}" enctype="multipart/form-data">
                         @csrf
 
-
                         <div class="form-group row">
                             <label for="nome" class="col-md-4 col-form-label text-md-right">Nome</label>
 
@@ -29,7 +28,6 @@
                                 @enderror
                             </div>
                         </div>
-
 
                         <div class="form-group row">
                             <label for="descricao" class="col-md-4 col-form-label text-md-right">Descrição</label>

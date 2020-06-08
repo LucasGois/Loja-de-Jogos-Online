@@ -54,7 +54,7 @@
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ 'Carrinho' }}</a>
+                                <a class="nav-link" href="{{ route('venda_lista') }}">{{ 'Carrinho' }}</a>
                             </li>
 
                             <li class="nav-item dropdown">
