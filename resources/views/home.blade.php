@@ -5,21 +5,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-                <div class="card">
-
-                    <div class="card-header">Status de Login</div>
-
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">{{ session('status') }}</div>
-                        @endif
-                        Você está logado!!
-                    </div>
-
-                </div>
-
                 <div class="card mt-3">
-                    <div class="card-header">Menu</div>
+                    <div class="card-header"><h2><b>Menu</b></h2></div>
 
                     <div class="card-body">
 
