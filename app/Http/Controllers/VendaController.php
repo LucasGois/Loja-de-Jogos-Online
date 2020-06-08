@@ -55,10 +55,8 @@ class VendaController extends Controller
     /**
      * Limpar carrinho
      */
-    public function limpar()
-    {
+    public function limpar() {
         session()->put('produtos', []);
-
         return redirect()->route('venda_lista');
     }
 
@@ -117,6 +115,8 @@ class VendaController extends Controller
             $produtosVenda->id_produto = $produto->id;
             $produtosVenda->save();
         }
+
+        $this->limpar();
 
         return redirect()->route('home');
     }
