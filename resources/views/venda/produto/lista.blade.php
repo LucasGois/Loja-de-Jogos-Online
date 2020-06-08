@@ -10,23 +10,19 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-12 col-md-5">
-                            <h2>Lista de <b>Produto</b></h2>
+                            <h2><b>Carrinho</b></h2>
                         </div>
                         
-                        <div class="col">
-                            <form>
-                                <div class="input-group">
-                                    <input type="hidden" name="ordem" value="{{ $ordem }}">
-                                    <input class="btn btn-primary" type="submit" value="Buscar">
-                                    <input class="form-control" type="text" name="busca" autocomplete="off">
-                                </div>
-                            </form>
-                        </div>
+                        <div class="col mt-2">
+                            <h4>Total: {{ number_format($total, 2, '.', '') }}</h4>
+                        </div>                    
                         
                         <div class="col col-md-2 text-right">
-                            <a href="{{ route('produto_cadastro') }}" class="btn btn-success">Adicionar</a>
+                            <a href="{{ route('venda_limpar') }}" class="btn btn-danger">Limpar</a>
                         </div>
+
                     </div>
+
                     <div class="row">
 
                     </div>
@@ -36,29 +32,62 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="text-center"><a href="?ordem=id&busca={{ $busca }}">ID</a></th>
-                                <th class="text-center"><a href="?ordem=nome&busca={{ $busca }}">Nome</a></th>
-                                <th class="text-center"><a href="?ordem=valor&busca={{ $busca }}">Valor</a></th>
+                                <th class="text-center">Imagem</th>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Nome</th>
+                                <th class="text-center">Valor</th>
                                 <th class="text-center">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($produtos as $produto)
                                 <tr>
+                                    <th class="text-center">
+                                        @if (count($produto->fotos) > 0)
+                                            <img src="{{asset($produto->fotos[0]->nome)}}" width="100">
+                                        @else
+                                            <img src="{{''}}">
+                                        @endif
+                                    </td>
                                     <th class="text-center">{{ $produto->id }}</td>
                                     <td class="text-center">{{ $produto->nome }}</td>
-                                    <td class="text-center">{{ $produto->valor }}</td>
+                                    <td class="text-center">{{ number_format($produto->valor, 2, '.', '') }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('produto_cadastro', $produto->id) }}" class="btn btn-sm btn-warning">Alterar</a>
-                                        <a class="btn btn-sm btn-danger" href="#" onclick="exclui( {{ $produto->id }} )">Excluir</a>
+                                        <a class="btn btn-sm btn-primary" href="#" onclick="remover( {{ $produto->id }} )">Remover</a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    
-                    {{ $produtos->links() }}
 
+                    <form action="{{ route('venda_salvar') }}" method="post">
+                        @csrf
+                        <div class="row">
+
+                            <label for="descricao" class="col col-form-label text-md-right">Endereço:</label>
+
+                            <div class="col">
+                                <select class="custom-select" name="id_endereco">
+                                    @foreach($enderecos as $endereco)
+                                        <option value="{{ $endereco->id }}">
+                                        {{
+                                            $endereco->id . ' - ' .
+                                            $endereco->cidade->nome . ', ' .
+                                            $endereco->bairro . ', ' .
+                                            $endereco->logradouro . ', ' .
+                                            $endereco->numero
+                                        }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col text-right">
+                                <input type="hidden" name="total" value="{{ $total }}">
+                                <input type="submit" class="btn btn-success" value="Finalizar">
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
 
             </div>
@@ -68,11 +97,13 @@
 </div>
 
 <script>
-	function exclui(id){
-		if (confirm("Deseja excluir a produto de id: " + id + "?")){
-			location.href = "/produto/excluir/" + id;
+
+	function remover(id){
+		if (confirm("Deseja remover o produto de id: " + id + "?")){
+			location.href = "/venda/remover/" + id;
 		}
 	}
+
 </script>
 
 @endsection

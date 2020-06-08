@@ -106,12 +106,4 @@ class ProdutoController extends Controller{
         $produto->delete();
         return redirect()->route('produto_lista');
     }
-
-    public function add_carrinho($id)
-    {
-        $variavel = [
-            "produto" => $id
-        ];
-        session($variavel);
-    }  
 }

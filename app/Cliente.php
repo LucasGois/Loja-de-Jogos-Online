@@ -15,4 +15,8 @@ class Cliente extends Model
     public function vendas(){
         return $this->hasMany('App\Venda', 'id_cliente', 'id');
     }
+
+    public function enderecos(){
+        return $this->hasMany('App\Endereco', 'id_cliente', 'id');
+    }
 }
