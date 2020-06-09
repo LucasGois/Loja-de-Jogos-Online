@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 use App\Categoria;
 
-class CategoriaController extends Controller
-{
+class CategoriaController extends Controller {
+    
     public function lista(Request $req) {
         $categorias = new Categoria();
 
