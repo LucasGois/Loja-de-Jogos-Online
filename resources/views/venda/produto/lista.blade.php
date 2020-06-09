@@ -28,66 +28,76 @@
                     </div>
                 </div>
                 <div class="card-body">
-                
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Imagem</th>
-                                <th class="text-center">ID</th>
-                                <th class="text-center">Nome</th>
-                                <th class="text-center">Valor</th>
-                                <th class="text-center">Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($produtos as $produto)
+
+                    @if (count($produtos) > 0)
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <th class="text-center">
-                                        @if (count($produto->fotos) > 0)
-                                            <img src="{{asset($produto->fotos[0]->nome)}}" width="100">
-                                        @else
-                                            <img src="{{''}}">
-                                        @endif
-                                    </td>
-                                    <th class="text-center">{{ $produto->id }}</td>
-                                    <td class="text-center">{{ $produto->nome }}</td>
-                                    <td class="text-center">{{ number_format($produto->valor, 2, '.', '') }}</td>
-                                    <td class="text-center">
-                                        <a class="btn btn-sm btn-primary" href="#" onclick="remover( {{ $produto->id }} )">Remover</a>
-                                    </td>
+                                    <th class="text-center">Imagem</th>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Nome</th>
+                                    <th class="text-center">Valor</th>
+                                    <th class="text-center">Ações</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($produtos as $produto)
+                                    <tr>
+                                        <th class="text-center">
+                                            @if (count($produto->fotos) > 0)
+                                                <img src="{{asset($produto->fotos[0]->nome)}}" width="100">
+                                            @else
+                                                <img src="{{''}}">
+                                            @endif
+                                        </td>
+                                        <th class="text-center">{{ $produto->id }}</td>
+                                        <td class="text-center">{{ $produto->nome }}</td>
+                                        <td class="text-center">{{ number_format($produto->valor, 2, '.', '') }}</td>
+                                        <td class="text-center">
+                                            <a class="btn btn-sm btn-primary" href="#" onclick="remover( {{ $produto->id }} )">Remover</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
 
-                    <form action="{{ route('venda_salvar') }}" method="post">
-                        @csrf
-                        <div class="row">
+                        <form action="{{ route('venda_salvar') }}" method="post">
+                            @csrf
+                            <div class="row">
 
-                            <label for="descricao" class="col col-form-label text-md-right">Endereço:</label>
+                                <div class="col">
+                                    <a href="{{ route('produto_lista') }}" class="btn btn-primary">Lista de Produtos</a>
+                                </div>
 
-                            <div class="col">
-                                <select class="custom-select" name="id_endereco">
-                                    @foreach($enderecos as $endereco)
-                                        <option value="{{ $endereco->id }}">
-                                        {{
-                                            $endereco->id . ' - ' .
-                                            $endereco->cidade->nome . ', ' .
-                                            $endereco->bairro . ', ' .
-                                            $endereco->logradouro . ', ' .
-                                            $endereco->numero
-                                        }}</option>
-                                    @endforeach
-                                </select>
+                                <div class="col">
+                                    <label for="descricao" class="col col-form-label text-md-right">Endereço:</label>
+                                </div>
+
+                                <div class="col-4">
+                                    <select class="custom-select" name="id_endereco">
+                                        @foreach($enderecos as $endereco)
+                                            <option value="{{ $endereco->id }}">
+                                            {{
+                                                $endereco->id . ' - ' .
+                                                $endereco->cidade->nome . ', ' .
+                                                $endereco->bairro . ', ' .
+                                                $endereco->logradouro . ', ' .
+                                                $endereco->numero
+                                            }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col text-right">
+                                    <input type="hidden" name="total" value="{{ $total }}">
+                                    <input type="submit" class="btn btn-success" value="Finalizar">
+                                </div>
+
                             </div>
-
-                            <div class="col text-right">
-                                <input type="hidden" name="total" value="{{ $total }}">
-                                <input type="submit" class="btn btn-success" value="Finalizar">
-                            </div>
-
-                        </div>
-                    </form>
+                        </form>
+                    @else
+                        <a href="{{ route('produto_lista') }}" class="btn btn-primary">Lista de Produtos</a>
+                    @endif
                 </div>
 
             </div>

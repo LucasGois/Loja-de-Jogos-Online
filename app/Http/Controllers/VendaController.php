@@ -65,7 +65,7 @@ class VendaController extends Controller
      */
     public function lista(Request $req)
     {
-        $produtos = session()->get('produtos');
+        $produtos = session()->get('produtos', []);
         
         $cliente = (new Cliente())->where('id_user', Auth::user()->id)->first();
         $enderecos = $cliente->enderecos;
@@ -100,10 +100,17 @@ class VendaController extends Controller
         } else {
             $venda = new Venda();
         }
+        $id_cliente = (DB::table('clientes')->where('id_user', Auth::user()->id)->first())->id;
+        $id_endereco = $req->input('id_endereco') ?? 0;
+
+        if($id_endereco === 0){
+            return redirect()->route('endereco_lista');
+        }
+
         $produtos = session()->get('produtos');
 
-        $venda->id_cliente = (DB::table('clientes')->where('id_user', Auth::user()->id)->first())->id;
-        $venda->id_endereco = $req->input('id_endereco');
+        $venda->id_cliente = $id_cliente;
+        $venda->id_endereco = $id_endereco;
         $venda->total = $req->input('total');
         $venda->save();
 

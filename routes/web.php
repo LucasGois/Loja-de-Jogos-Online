@@ -29,6 +29,12 @@ Route::get('/produto/lista', 'ProdutoController@lista')->name('produto_lista');
 
 Route::middleware(['auth'])->group(function(){
 
+    // Endereco
+    Route::get('/endereco/lista', 'EnderecoController@lista')->name('endereco_lista');
+    Route::get('/endereco/cadastro/{id?}', 'EnderecoController@cadastro')->name('endereco_cadastro');
+    Route::post('/endereco/salvar/{id?}', 'EnderecoController@salvar')->name('endereco_salvar');
+    Route::get('/endereco/excluir/{id}', 'EnderecoController@excluir')->name('endereco_excluir');
+
     // Venda
     Route::get('/venda/lista', 'VendaController@lista')->name('venda_lista');
     Route::post('/venda/salvar/{id?}', 'VendaController@salvar')->name('venda_salvar');
@@ -36,6 +42,10 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/venda/adicionar/{id_produto}', 'VendaController@adicionar')->name('venda_adicionar');
     Route::get('/venda/remover/{id_produto}', 'VendaController@remover')->name('venda_remover');
     Route::get('/venda/limpar', 'VendaController@limpar')->name('venda_limpar');
+
+    // Historico
+    Route::get('/historico/lista', 'HistoricoController@lista')->name('historico_lista');
+    Route::get('/historico/detalhes/{id_venda}', 'HistoricoController@detalhes')->name('historico_detalhes');
 
 });
 
@@ -52,12 +62,6 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/categoria/cadastro/{id?}', 'CategoriaController@cadastro')->name('categoria_cadastro');
     Route::post('/categoria/salvar/{id?}', 'CategoriaController@salvar')->name('categoria_salvar');
     Route::get('/categoria/excluir/{id}', 'CategoriaController@excluir')->name('categoria_excluir');
-
-    // Endereco
-    Route::get('/endereco/lista', 'EnderecoController@lista')->name('endereco_lista');
-    Route::get('/endereco/cadastro/{id?}', 'EnderecoController@cadastro')->name('endereco_cadastro');
-    Route::post('/endereco/salvar/{id?}', 'EnderecoController@salvar')->name('endereco_salvar');
-    Route::get('/endereco/excluir/{id}', 'EnderecoController@excluir')->name('endereco_excluir');
 
     // Produto
     // produto_lista
