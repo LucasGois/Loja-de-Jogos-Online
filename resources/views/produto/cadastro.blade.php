@@ -71,7 +71,33 @@
                             </div>
                         </div>
 
-                        <!-- Imagem -->
+                        <div class="form-group row mt-5">
+                            
+                            <div class="col-3"></div>
+
+                            <div class="col text-center">
+                                <a href="{{ route('fotos_produto_lista', $produto->id) }}" class="btn btn-sm btn-primary">
+                                    <h5>Imagens</h5>
+                                </a>
+                            </div>
+
+                            <div class="col text-center">
+                                <a href="{{ route('categorias_produto_lista', $produto->id) }}" class="btn btn-sm btn-primary">
+                                    <h5>Categorias</h5>
+                                </a>
+                            </div>
+
+                            <div class="col text-center">
+                                <a href="{{ route('plataformas_produto_lista', $produto->id) }}" class="btn btn-sm btn-primary">
+                                    <h5>Plataformas</h5>
+                                </a>
+                            </div>
+
+                            <div class="col-3"></div>
+
+                        </div>
+
+                        <!-- Imagem 
                         <div class="form-group row ">
                             <label for="upload" class="col-md-4 col-form-label text-md-right">Imagem</label>
                             <div class="col-md-6 "> 
@@ -84,9 +110,9 @@
                                 @enderror
                             </div>
                         </div>
-                        <!-- Imagem -->
+                         Imagem -->
 
-                        <div class="form-group row">
+                        <div class="form-group row m-5">
                             <div class="col text-center">
                                 <button type="submit" class="btn btn-primary">Salvar</button>
                             </div>
