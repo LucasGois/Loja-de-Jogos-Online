@@ -66,7 +66,7 @@
                             <div class="row">
 
                                 <div class="col">
-                                    <a href="{{ route('produto_lista') }}" class="btn btn-primary">Lista de Produtos</a>
+                                    <a href="{{ route('produto_lista') }}" class="btn btn-primary">Add Produtos</a>
                                 </div>
 
                                 <div class="col">
@@ -96,7 +96,7 @@
                             </div>
                         </form>
                     @else
-                        <a href="{{ route('produto_lista') }}" class="btn btn-primary">Lista de Produtos</a>
+                        <a href="{{ route('produto_lista') }}" class="btn btn-primary">Add Produtos</a>
                     @endif
                 </div>
 

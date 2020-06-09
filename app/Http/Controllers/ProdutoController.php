@@ -53,7 +53,7 @@ class ProdutoController extends Controller{
     public function salvar(Request $req, $id = 0) {
 
         $req->validate([
-            'nome' => 'required|min:3|unique:cidades,nome',
+            'nome' => 'required|min:3|unique:produtos,nome',
             'valor' => 'required|numeric',
             
         ]);
@@ -77,11 +77,7 @@ class ProdutoController extends Controller{
         // $slug = $slug . "." . $imagem->extension();
         $produto->slug = $slug;
 
-        if ($produto->save()){
-            $msg = "Produto adicionado!";
-        } else {
-            $msg = "Produto não foi cadastrado. Tente novamente!!";
-        }
+        $produto->save();
 
         // Imagem
         $imagem = $req->file('upload');

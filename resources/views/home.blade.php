@@ -12,7 +12,17 @@
 
                         <!-- Produtos -->
                         <div class="col col-md-12 text-right">
-                            <a href="{{ route('produto_lista') }}" class="btn btn-outline-secondary btn-lg btn-block">Produtos</a>
+                            <a href="{{ route('produto_lista') }}" class="btn btn-outline-secondary btn-lg btn-block">Loja</a>
+                        </div>
+
+                        <!-- Endereco -->
+                        <div class="col col-md-12 text-right">
+                            <a href="{{ route('endereco_lista') }}" class="btn btn-outline-secondary btn-lg btn-block">Endereços</a>
+                        </div>
+
+                        <!-- Historico -->
+                        <div class="col col-md-12 text-right">
+                            <a href="{{ route('historico_lista') }}" class="btn btn-outline-secondary btn-lg btn-block">Suas Compras</a>
                         </div>
 
                         @if ($admin ?? false)
@@ -20,11 +30,6 @@
                             <!-- Cidades -->
                             <div class="col col-md-12 text-right">
                                 <a href="{{ route('cidade_lista') }}" class="btn btn-outline-secondary btn-lg btn-block">Cidades</a>
-                            </div>
-
-                            <!-- Endereços -->
-                            <div class="col col-md-12 text-right">
-                                <a href="{{ route('endereco_lista') }}" class="btn btn-outline-secondary btn-lg btn-block">Endereços</a>
                             </div>
 
                             <!-- Categorias -->

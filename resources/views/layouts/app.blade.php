@@ -18,6 +18,23 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+
+            background-image: url("../storage/background.png");
+
+            height: 100%; 
+            opacity: 0.98;
+
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
 </head>
 <body>
     <div id="app">

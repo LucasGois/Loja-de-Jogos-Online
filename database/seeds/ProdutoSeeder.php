@@ -3,15 +3,9 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ProdutoSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
+class ProdutoSeeder extends Seeder {
+
+    public function run() {
         DB::table('produtos')->insert([
             'nome' => 'Cyberpunk 2077',
             'descricao' => 'GOTY',
@@ -32,4 +26,5 @@ class ProdutoSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
     }
+
 }

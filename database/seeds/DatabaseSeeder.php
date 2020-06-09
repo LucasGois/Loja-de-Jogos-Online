@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             EnderecoSeeder::class,
             ProdutoSeeder::class,
             FotosProdutoSeeder::class,
+            CategoriaSeeder::class,
         ]);
     }
 }

@@ -3,15 +3,9 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CidadeSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
+class CidadeSeeder extends Seeder {
+
+    public function run() {
         DB::table('cidades')->insert([
             'nome' => 'Night City',
             'estado' => 'Cyberpunk',
@@ -33,4 +27,5 @@ class CidadeSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
     }
+
 }

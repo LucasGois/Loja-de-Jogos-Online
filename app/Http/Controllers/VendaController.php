@@ -125,6 +125,6 @@ class VendaController extends Controller
 
         $this->limpar();
 
-        return redirect()->route('home');
+        return redirect()->route('historico_lista');
     }
 }
