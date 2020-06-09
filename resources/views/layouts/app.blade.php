@@ -63,16 +63,23 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                    
+                                    <!-- Historico -->
+                                    <a class="dropdown-item" href="{{ route('historico_lista') }}">Histórico</a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+                                    <!-- Endereco -->
+                                    <a class="dropdown-item" href="{{ route('endereco_lista') }}">Endereços</a>
+
+                                    <!-- Logout -->
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+
                                 </div>
+
                             </li>
                         @endguest
                     </ul>

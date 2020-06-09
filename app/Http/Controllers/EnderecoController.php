@@ -14,6 +14,7 @@ class EnderecoController extends Controller
 {
     
     public function lista(Request $req) {
+        $id_cliente = (DB::table('clientes')->where('id_user', Auth::user()->id)->first())->id;
         $enderecos = new Endereco();
 
         $ordem = $req->query('ordem', 'id');
@@ -21,6 +22,7 @@ class EnderecoController extends Controller
 
         $enderecos = $enderecos->orderBy($ordem, 'asc');
         $enderecos = $enderecos->where($ordem, 'LIKE', "%$busca%");
+        $enderecos = $enderecos->where('id_cliente', '=', $id_cliente);
 
         $vetor_parametros = [];
         $vetor_parametros['ordem'] = $ordem;

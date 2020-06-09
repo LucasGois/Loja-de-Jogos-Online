@@ -44,12 +44,9 @@ class ProdutoController extends Controller{
             // Adicionar
             $produto = new Produto();
         }
-
-       // $cidades = Cidade::all();
         
         return view('produto.cadastro', [
             'produto' => $produto,
-            //'cidades'=>$cidades
         ]);
     }
 
