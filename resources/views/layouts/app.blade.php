@@ -24,7 +24,7 @@
             height: 100%;
             margin: 0;
 
-            background-image: url("../storage/background.png");
+            background-image: url("/storage/background.png");
 
             height: 100%; 
             opacity: 0.98;
