@@ -71,7 +71,7 @@
                             </div>
                         </div>
 
-                        @if($produto->id>0)
+                        @if($produto->id > 0)
                             <div class="form-group row mt-5">
                                 
                                 <div class="col-3"></div>

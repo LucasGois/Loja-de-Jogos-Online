@@ -15,7 +15,7 @@
                         </div>
 
                         <div class="col col-md-2 text-right">
-                            <a href="{{ route('categoria_cadastro') }}" class="btn btn-success">Adicionar</a>
+                            <a href="{{ route('categorias_produto_cadastro', $produto->id) }}" class="btn btn-success">Adicionar</a>
                         </div>
 
                     </div>
@@ -50,10 +50,10 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript">
     function exclui(id_produto, id_categoria){
         if (confirm("Deseja excluir a categoria de id: " + id_categoria + "?")){
-            location.href = "/categorias_produto/excluir/" + id_produto "/" + id_categoria;
+            location.href = "/categorias_produto/excluir/" + id_produto + "/" + id_categoria;
         }
     }
 </script>

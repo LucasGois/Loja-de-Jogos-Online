@@ -79,6 +79,7 @@ class ProdutoController extends Controller{
 
         $produto->save();
 
+        /*
         // Imagem
         $imagem = $req->file('upload');
     	$nome_arquivo = $produto->nome . " " . $produto->id;
@@ -90,6 +91,7 @@ class ProdutoController extends Controller{
         $fotoProduto->id_produto = $produto->id;
         $fotoProduto->nome = "storage/$nome_arquivo";
         $fotoProduto->save();
+        */
 
         return redirect()->route('produto_lista');
     }
