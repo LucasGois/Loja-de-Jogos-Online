@@ -84,6 +84,21 @@ class ProdutoController extends Controller{
         return redirect()->route('produto_lista');
     }
 
+    public function detalhes($id){
+
+        if($id > 0){
+            $produto = Produto::find($id);
+        } else {
+            $produto = new Produto();
+        }
+
+        if ($produto == null) { return redirect()->route('produto_lista'); }
+
+        return view('produto.detalhes', [
+            'produto' => $produto,
+        ]);
+    }
+
     public function excluir($id){
         $produto = Produto::find($id);
         $produto->delete();

@@ -38,6 +38,8 @@ class FotosProdutoController extends Controller {
 
         if ($produto == null) { return redirect()->route('produto_lista'); }
 
+        if (count($produto->fotos) >= 5) { return redirect()->route('fotos_produto_lista', $id_produto); }
+
         $nome_arquivo = $produto->id . " " . $produto->id . " " . $produto->nome;
 
         $fotosProduto = new FotoProduto();

@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-12 col-md-5">
-                            <h2>Lista de <b>Produto</b></h2>
+                            <h2>Lista de <b>Produtos</b></h2>
                         </div>
                         
                         <div class="col">
@@ -58,7 +58,7 @@
                                         @endif
                                     </td>
                                     <th class="text-center">{{ $produto->id }}</td>
-                                    <td class="text-center">{{ $produto->nome }}</td>
+                                    <td class="text-center"><a href="{{ route('produto_detalhes', $produto->id) }}">{{$produto->nome}}</a></td>
                                     <td class="text-center">{{ number_format($produto->valor, 2, '.', '') }}</td>
                                     @if ($admin)
                                         <td class="text-center">

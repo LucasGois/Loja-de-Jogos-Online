@@ -10,6 +10,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Produto
 Route::get('/produto/lista', 'ProdutoController@lista')->name('produto_lista');
+Route::get('/produto/detalhes/{id}', 'ProdutoController@detalhes')->name('produto_detalhes');
 
 Route::middleware(['auth'])->group(function(){
 

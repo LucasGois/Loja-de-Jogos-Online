@@ -43,7 +43,7 @@
                         </tbody>
                     </table>
 
-                    <a href="{{ route('produto_cadastro', $produto->id) }}" class="btn btn-primary">Voltar</a>
+                    <a href="{{ route('produto_lista') }}" class="btn btn-primary">Voltar</a>
 
                 </div>
 
@@ -52,13 +52,4 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-    function exclui(id_produto, id_plataforma){
-        if (confirm("Deseja excluir a plataforma de id: " + id_plataforma + "?")){
-            location.href = "/plataformas_produto/excluir/" + id_produto + "/" + id_plataforma;
-        }
-    }
-</script>
-
 @endsection
