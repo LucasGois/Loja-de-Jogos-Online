@@ -36,7 +36,7 @@
                                     <th class="text-center">{{ $categoria->id }}</td>
                                     <td class="text-center">{{ $categoria->nome }}</td>
                                     <td class="text-center">
-                                       <a class="btn btn-sm btn-danger" href="#" onclick="exclui( {{ $categoria->id }} )">Excluir</a>
+                                       <a class="btn btn-sm btn-danger" href="#" onclick="exclui({{$produto->id}}, {{$categoria->id}})">Excluir</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -51,9 +51,9 @@
 </div>
 
 <script>
-    function exclui(id){
-        if (confirm("Deseja excluir a categoria de id: " + id + "?")){
-            location.href = "/categorias_produto/excluir/" + id;
+    function exclui(id_produto, id_categoria){
+        if (confirm("Deseja excluir a categoria de id: " + id_categoria + "?")){
+            location.href = "/categorias_produto/excluir/" + id_produto "/" + id_categoria;
         }
     }
 </script>

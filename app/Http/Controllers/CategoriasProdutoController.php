@@ -20,4 +20,12 @@ class CategoriasProdutoController extends Controller {
         ]);
     }
 
+    public function excluir($id_produto, $id_categoria){
+        $produto = Produto::find($id_produto)->pivot;
+
+        return dd($produto);
+
+        return redirect()->route('categoria_lista');
+    }
+
 }

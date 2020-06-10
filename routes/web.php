@@ -58,6 +58,7 @@ Route::middleware(['admin'])->group(function(){
 
     // Categorias Produto
     Route::get('/categorias_produto/lista/{id_produto}', 'CategoriasProdutoController@lista')->name('categorias_produto_lista');
+    Route::get('/categorias_produto/excluir/{id_produto}/{id_categoria}', 'CategoriasProdutoController@excluir')->name('categorias_produto_excluir');
 
     // Plataformas Produto
     Route::get('/plataformas_produto/lista/{id_produto}', 'PlataformasProdutoController@lista')->name('plataformas_produto_lista');

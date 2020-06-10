@@ -71,31 +71,33 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mt-5">
-                            
-                            <div class="col-3"></div>
+                        @if($produto->id>0)
+                            <div class="form-group row mt-5">
+                                
+                                <div class="col-3"></div>
 
-                            <div class="col text-center">
-                                <a href="{{ route('fotos_produto_lista', $produto->id) }}" class="btn btn-sm btn-primary">
-                                    <h5>Imagens</h5>
-                                </a>
+                                <div class="col text-center">
+                                    <a href="{{ route('fotos_produto_lista', $produto->id) }}" class="btn btn-sm btn-primary">
+                                        <h5>Imagens</h5>
+                                    </a>
+                                </div>
+
+                                <div class="col text-center">
+                                    <a href="{{ route('categorias_produto_lista', $produto->id) }}" class="btn btn-sm btn-primary">
+                                        <h5>Categorias</h5>
+                                    </a>
+                                </div>
+
+                                <div class="col text-center">
+                                    <a href="{{ route('plataformas_produto_lista', $produto->id) }}" class="btn btn-sm btn-primary">
+                                        <h5>Plataformas</h5>
+                                    </a>
+                                </div>
+
+                                <div class="col-3"></div>
+
                             </div>
-
-                            <div class="col text-center">
-                                <a href="{{ route('categorias_produto_lista', $produto->id) }}" class="btn btn-sm btn-primary">
-                                    <h5>Categorias</h5>
-                                </a>
-                            </div>
-
-                            <div class="col text-center">
-                                <a href="{{ route('plataformas_produto_lista', $produto->id) }}" class="btn btn-sm btn-primary">
-                                    <h5>Plataformas</h5>
-                                </a>
-                            </div>
-
-                            <div class="col-3"></div>
-
-                        </div>
+                        @endif
 
                         <!-- Imagem 
                         <div class="form-group row ">
