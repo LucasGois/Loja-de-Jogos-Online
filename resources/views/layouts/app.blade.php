@@ -81,6 +81,9 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
+                                    <!-- Perfil 
+                                    <a class="dropdown-item" href="{{ route('register') }}">Perfil</a>
+                                    -->
                                     <!-- Historico -->
                                     <a class="dropdown-item" href="{{ route('historico_lista') }}">Histórico</a>
 

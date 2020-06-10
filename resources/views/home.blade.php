@@ -18,15 +18,18 @@
                             <a href="{{ route('produto_lista') }}" class="btn btn-outline-secondary btn-lg btn-block">Loja</a>
                         </div>
 
-                        <!-- Endereco -->
-                        <div class="col col-md-12 text-right">
-                            <a href="{{ route('endereco_lista') }}" class="btn btn-outline-secondary btn-lg btn-block">Endereços</a>
-                        </div>
+                        @guest
+                        @else
+                            <!-- Endereco 
+                            <div class="col col-md-12 text-right">
+                                <a href="{{ route('endereco_lista') }}" class="btn btn-outline-secondary btn-lg btn-block">Endereços</a>
+                            </div>-->
 
-                        <!-- Historico -->
-                        <div class="col col-md-12 text-right">
-                            <a href="{{ route('historico_lista') }}" class="btn btn-outline-secondary btn-lg btn-block">Suas Compras</a>
-                        </div>
+                            <!-- Historico -->
+                            <div class="col col-md-12 text-right">
+                                <a href="{{ route('historico_lista') }}" class="btn btn-outline-secondary btn-lg btn-block">Suas Compras</a>
+                            </div>
+                        @endguest
 
                         @if ($admin ?? false)
 

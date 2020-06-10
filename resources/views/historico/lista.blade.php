@@ -26,7 +26,7 @@
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Endereço</th>
                                 <th class="text-center">Total</th>
-                                <th class="text-center">>Data</th>
+                                <th class="text-center">Data</th>
                                 <th class="text-center">Ações</th>
                             </tr>
                         </thead>
