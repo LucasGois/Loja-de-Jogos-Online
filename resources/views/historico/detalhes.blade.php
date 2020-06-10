@@ -62,6 +62,8 @@
                         </tbody>
                     </table>
 
+                    <a href="{{ route('historico_lista') }}" class="btn btn-primary">Voltar</a>
+
                 </div>
 
             </div>

@@ -99,21 +99,6 @@
                             </div>
                         @endif
 
-                        <!-- Imagem 
-                        <div class="form-group row ">
-                            <label for="upload" class="col-md-4 col-form-label text-md-right">Imagem</label>
-                            <div class="col-md-6 "> 
-                                <input id="upload" type="file" class="form-control-secundary @error('upload') is-invalid @enderror" name="upload">
-
-                                @error('upload')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                         Imagem -->
-
                         <div class="form-group row m-5">
                             <div class="col text-center">
                                 <button type="submit" class="btn btn-primary">Salvar</button>
@@ -121,6 +106,9 @@
                         </div>
 
                     </form>
+
+                    <a href="{{ route('produto_lista') }}" class="btn btn-primary">Voltar</a>
+
                 </div>
             
             </div>

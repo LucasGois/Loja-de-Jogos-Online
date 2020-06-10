@@ -42,6 +42,9 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                    <a href="{{ route('produto_cadastro', $produto->id) }}" class="btn btn-primary">Voltar</a>
+
                 </div>
 
             </div>

@@ -34,6 +34,9 @@
                         </div>
 
                     </form>
+
+                    <a href="{{ route('categorias_produto_lista', $produto->id) }}" class="btn btn-primary">Voltar</a>
+
                 </div>
             
             </div>

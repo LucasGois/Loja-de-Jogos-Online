@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder {
             FotosProdutoSeeder::class,
             CategoriaSeeder::class,
             CategoriasProdutosSeeder::class,
+            PlataformaSeeder::class,
+            PlataformasProdutosSeeder::class,
         ]);
     }
 

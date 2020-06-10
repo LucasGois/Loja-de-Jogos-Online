@@ -8,24 +8,22 @@
             <div class="card">
             
                 <div class="card-header">
-                    <h2>Cadastro de <b>Categorias</b></h2>
+                    <h2>Cadastro de <b>Plataformas</b> de <b>{{$produto->nome}}</b></h2>
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('categoria_salvar', $categoria->id) }}">
+                    <form method="POST" action="{{ route('plataformas_produto_salvar', $produto->id) }}">
                         @csrf
 
                         <div class="form-group row">
                             <label for="nome" class="col-md-4 col-form-label text-md-right">Nome</label>
 
                             <div class="col-md-6">
-                                <input id="nome" type="text" class="form-control @error('nome') is-invalid @enderror" name="nome" value="{{ old('nome', $categoria->nome) }}" required autocomplete="nome" autofocus>
-
-                                @error('nome')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <select class="custom-select" name="id_plataforma">
+                                    @foreach($plataformas as $plataforma)
+                                        <option value="{{ $plataforma->id }}">{{ $plataforma->id }} {{ $plataforma->nome }} </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
@@ -37,7 +35,7 @@
 
                     </form>
 
-                    <a href="{{ route('categoria_lista') }}" class="btn btn-primary">Voltar</a>
+                    <a href="{{ route('plataformas_produto_lista', $produto->id) }}" class="btn btn-primary">Voltar</a>
 
                 </div>
             

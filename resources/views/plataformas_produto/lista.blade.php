@@ -11,11 +11,11 @@
                     <div class="row">
 
                         <div class="col">
-                            <h2><b>Categorias</b> de <b>{{$produto->nome}}</b></h2>
+                            <h2><b>Plataformas</b> de <b>{{$produto->nome}}</b></h2>
                         </div>
 
                         <div class="col col-md-2 text-right">
-                            <a href="{{ route('categorias_produto_cadastro', $produto->id) }}" class="btn btn-success">Adicionar</a>
+                            <a href="{{ route('plataformas_produto_cadastro', $produto->id) }}" class="btn btn-success">Adicionar</a>
                         </div>
 
                     </div>
@@ -31,12 +31,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categorias as $categoria)
+                            @foreach ($plataformas as $plataforma)
                                 <tr>
-                                    <th class="text-center">{{ $categoria->id }}</td>
-                                    <td class="text-center">{{ $categoria->nome }}</td>
+                                    <th class="text-center">{{ $plataforma->id }}</td>
+                                    <td class="text-center">{{ $plataforma->nome }}</td>
                                     <td class="text-center">
-                                       <a class="btn btn-sm btn-danger" href="#" onclick="exclui({{$produto->id}}, {{$categoria->id}})">Excluir</a>
+                                       <a class="btn btn-sm btn-danger" href="#" onclick="exclui({{$produto->id}}, {{$plataforma->id}})">Excluir</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -54,9 +54,9 @@
 </div>
 
 <script type="text/javascript">
-    function exclui(id_produto, id_categoria){
-        if (confirm("Deseja excluir a categoria de id: " + id_categoria + "?")){
-            location.href = "/categorias_produto/excluir/" + id_produto + "/" + id_categoria;
+    function exclui(id_produto, id_plataforma){
+        if (confirm("Deseja excluir a plataforma de id: " + id_plataforma + "?")){
+            location.href = "/plataformas_produto/excluir/" + id_produto + "/" + id_plataforma;
         }
     }
 </script>

@@ -53,7 +53,7 @@ class ProdutoController extends Controller{
     public function salvar(Request $req, $id = 0) {
 
         $req->validate([
-            'nome' => 'required|min:3|unique:produtos,nome',
+            'nome' => 'required|min:3',
             'valor' => 'required|numeric',
             
         ]);

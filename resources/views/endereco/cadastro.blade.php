@@ -89,6 +89,9 @@
                         </div>
 
                     </form>
+
+                    <a href="{{ route('endereco_lista') }}" class="btn btn-primary">Voltar</a>
+
                 </div>
             
             </div>

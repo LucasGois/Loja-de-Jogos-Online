@@ -50,6 +50,9 @@
                         </div>
 
                     </form>
+
+                    <a href="{{ route('cidade_lista') }}" class="btn btn-primary">Voltar</a>
+
                 </div>
             
             </div>

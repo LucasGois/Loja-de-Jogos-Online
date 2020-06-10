@@ -58,7 +58,7 @@ class EnderecoController extends Controller
     public function salvar(Request $req, $id = 0) {
 
         $req->validate([
-            'descricao' => 'required|min:15|unique:enderecos,descricao'
+            'descricao' => 'required|min:15'
         ]);
 
         if($id > 0){

@@ -47,6 +47,12 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/categoria/salvar/{id?}', 'CategoriaController@salvar')->name('categoria_salvar');
     Route::get('/categoria/excluir/{id}', 'CategoriaController@excluir')->name('categoria_excluir');
 
+    // Plataforma
+    Route::get('/plataforma/lista', 'PlataformaController@lista')->name('plataforma_lista');
+    Route::get('/plataforma/cadastro/{id?}', 'PlataformaController@cadastro')->name('plataforma_cadastro');
+    Route::post('/plataforma/salvar/{id?}', 'PlataformaController@salvar')->name('plataforma_salvar');
+    Route::get('/plataforma/excluir/{id}', 'PlataformaController@excluir')->name('plataforma_excluir');
+
     // Produto
     // produto_lista
     Route::get('/produto/cadastro/{id?}', 'ProdutoController@cadastro')->name('produto_cadastro');
@@ -59,7 +65,6 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/fotos_produto/salvar/{id_produto}', 'FotosProdutoController@salvar')->name('fotos_produto_salvar');
     Route::get('/fotos_produto/excluir/{id_produto}/{id_foto}', 'FotosProdutoController@excluir')->name('fotos_produto_excluir');
 
-
     // Categorias Produto
     Route::get('/categorias_produto/lista/{id_produto}', 'CategoriasProdutoController@lista')->name('categorias_produto_lista');
     Route::get('/categorias_produto/cadastro/{id_produto}', 'CategoriasProdutoController@cadastro')->name('categorias_produto_cadastro');
@@ -68,5 +73,8 @@ Route::middleware(['admin'])->group(function(){
 
     // Plataformas Produto
     Route::get('/plataformas_produto/lista/{id_produto}', 'PlataformasProdutoController@lista')->name('plataformas_produto_lista');
+    Route::get('/plataformas_produto/cadastro/{id_produto}', 'PlataformasProdutoController@cadastro')->name('plataformas_produto_cadastro');
+    Route::post('/plataformas_produto/salvar/{id_produto}', 'PlataformasProdutoController@salvar')->name('plataformas_produto_salvar');
+    Route::get('/plataformas_produto/excluir/{id_produto}/{id_categoria}', 'PlataformasProdutoController@excluir')->name('plataformas_produto_excluir');
 
 });

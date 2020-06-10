@@ -49,7 +49,7 @@ class CategoriaController extends Controller {
     public function salvar(Request $req, $id = 0) {
 
         $req->validate([
-            'nome' => 'required|min:3|unique:categorias,nome'
+            'nome' => 'required|min:3'
         ]);
 
         if($id > 0){
@@ -69,4 +69,5 @@ class CategoriaController extends Controller {
         $categoria->delete();
         return redirect()->route('categoria_lista');
     }
+
 }

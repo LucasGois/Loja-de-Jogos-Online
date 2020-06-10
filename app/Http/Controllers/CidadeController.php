@@ -49,7 +49,7 @@ class CidadeController extends Controller
     public function salvar(Request $req, $id = 0) {
 
         $req->validate([
-            'nome' => 'required|min:3|unique:cidades,nome'
+            'nome' => 'required|min:3'
         ]);
 
         if($id > 0){

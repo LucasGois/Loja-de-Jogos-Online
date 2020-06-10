@@ -37,6 +37,11 @@
                                 <a href="{{ route('categoria_lista') }}" class="btn btn-outline-secondary btn-lg btn-block">Categorias</a>
                             </div>
 
+                            <!-- Plataforma -->
+                            <div class="col col-md-12 text-right">
+                                <a href="{{ route('plataforma_lista') }}" class="btn btn-outline-secondary btn-lg btn-block">Plataforma</a>
+                            </div>
+
                         @endif
 
                     </div>
