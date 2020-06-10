@@ -40,6 +40,8 @@ class PlataformaController extends Controller {
             $plataforma = new Plataforma();
         }
 
+        if ($plataforma == null) { return redirect()->route('plataforma_lista'); }
+
         return view('plataforma.cadastro', [
             'plataforma' => $plataforma
         ]);
@@ -57,6 +59,8 @@ class PlataformaController extends Controller {
             $plataforma = new Plataforma();
         }
 
+        if ($plataforma == null) { return redirect()->route('plataforma_lista'); }
+
         $plataforma->nome = $req->input('nome');
         $plataforma->save();
 
@@ -65,6 +69,9 @@ class PlataformaController extends Controller {
 
     public function excluir($id){
         $plataforma = Plataforma::find($id);
+
+        if ($plataforma == null) { return redirect()->route('plataforma_lista'); }
+
         $plataforma->delete();
         return redirect()->route('plataforma_lista');
     }

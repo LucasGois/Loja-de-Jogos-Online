@@ -12,9 +12,7 @@ class PlataformasProdutoController extends Controller {
     public function lista($id_produto) {
         $produto = Produto::find($id_produto);
 
-        if ($produto == null) {
-            return redirect()->route('produto_lista');
-        }
+        if ($produto == null) { return redirect()->route('produto_lista'); }
 
         return view('plataformas_produto.lista', [
             'produto' => $produto,
@@ -25,9 +23,7 @@ class PlataformasProdutoController extends Controller {
     public function cadastro($id_produto) {
         $produto = Produto::find($id_produto);
 
-        if ($produto == null) {
-            return redirect()->route('produto_lista');
-        }
+        if ($produto == null) { return redirect()->route('produto_lista'); }
 
         $plataformas = Plataforma::all();
 
@@ -40,9 +36,7 @@ class PlataformasProdutoController extends Controller {
     public function salvar(Request $req, $id_produto) {
         $produto = Produto::find($id_produto);
 
-        if ($produto == null) {
-            return redirect()->route('produto_lista');
-        }
+        if ($produto == null) { return redirect()->route('produto_lista'); }
 
         $plataformasProduto = new PlataformaProduto();
         $plataformasProduto->id_produto = $id_produto;
@@ -55,9 +49,7 @@ class PlataformasProdutoController extends Controller {
     public function excluir($id_produto, $id_plataforma){
         $produto = Produto::find($id_produto);
 
-        if ($produto == null) {
-            return redirect()->route('produto_lista');
-        }
+        if ($produto == null) { return redirect()->route('produto_lista'); }
 
         $plataformasProduto = new PlataformaProduto();
         $plataformasProduto = $plataformasProduto->where('id_produto', '=', $id_produto);

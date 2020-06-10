@@ -26,7 +26,11 @@ class VendaController extends Controller
             }
         }
 
-        $produtos[] = Produto::find($id_produto);
+        $produto = Produto::find($id_produto);
+
+        if ($produto == null) { return redirect()->route('produto_lista'); }
+
+        $produtos[] = $produto;
 
         session()->put('produtos', $produtos);
 
@@ -94,6 +98,9 @@ class VendaController extends Controller
         } else {
             $venda = new Venda();
         }
+
+        if ($venda == null) { return redirect()->route('venda_lista'); }
+
         $id_cliente = (DB::table('clientes')->where('id_user', Auth::user()->id)->first())->id;
         $id_endereco = $req->input('id_endereco') ?? 0;
 

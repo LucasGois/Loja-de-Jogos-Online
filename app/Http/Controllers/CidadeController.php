@@ -41,6 +41,8 @@ class CidadeController extends Controller
             $cidade = new Cidade();
         }
 
+        if ($cidade == null) { return redirect()->route('cidade_lista'); }
+
         return view('cidade.cadastro', [
             'cidade' => $cidade
         ]);
@@ -57,6 +59,8 @@ class CidadeController extends Controller
         } else {
             $cidade = new Cidade();
         }
+
+        if ($cidade == null) { return redirect()->route('cidade_lista'); }
 
         $cidade->nome = $req->input('nome');
         $cidade->estado = $req->input('estado');

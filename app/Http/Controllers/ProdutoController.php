@@ -44,6 +44,8 @@ class ProdutoController extends Controller{
             // Adicionar
             $produto = new Produto();
         }
+
+        if ($produto == null) { return redirect()->route('produto_lista'); }
         
         return view('produto.cadastro', [
             'produto' => $produto,
@@ -60,11 +62,11 @@ class ProdutoController extends Controller{
 
         if($id > 0){
             $produto = Produto::find($id);
-            $fotoProduto = new FotoProduto();
         } else {
             $produto = new Produto();
-            $fotoProduto = new FotoProduto();
         }
+
+        if ($produto == null) { return redirect()->route('produto_lista'); }
 
         // Produto
         $produto->nome = $req->input('nome');
@@ -78,20 +80,6 @@ class ProdutoController extends Controller{
         $produto->slug = $slug;
 
         $produto->save();
-
-        /*
-        // Imagem
-        $imagem = $req->file('upload');
-    	$nome_arquivo = $produto->nome . " " . $produto->id;
-    	$nome_arquivo = Str::of($nome_arquivo)->slug('-');
-    	$nome_arquivo = $nome_arquivo . "." . $imagem->extension();
-    	$nome_arquivo = $imagem->storeAs('imagens_produtos', $nome_arquivo);
-
-        // FotoProduto
-        $fotoProduto->id_produto = $produto->id;
-        $fotoProduto->nome = "storage/$nome_arquivo";
-        $fotoProduto->save();
-        */
 
         return redirect()->route('produto_lista');
     }

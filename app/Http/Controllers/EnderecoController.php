@@ -47,6 +47,8 @@ class EnderecoController extends Controller
             $endereco = new Endereco();
         }
 
+        if ($endereco == null) { return redirect()->route('endereco_lista'); }
+
         $cidades = Cidade::all();
         
         return view('endereco.cadastro', [
@@ -66,6 +68,8 @@ class EnderecoController extends Controller
         } else {
             $endereco = new Endereco();
         }
+
+        if ($endereco == null) { return redirect()->route('endereco_lista'); }
         
         $id_cidade = $req->input('id_cidade');
         $id_cliente = (DB::table('clientes')->where('id_user', Auth::user()->id)->first())->id;
@@ -84,6 +88,9 @@ class EnderecoController extends Controller
 
     public function excluir($id){
         $endereco = Endereco::find($id);
+
+        if ($endereco == null) { return redirect()->route('endereco_lista'); }
+
         $endereco->delete();
         return redirect()->route('endereco_lista');
     }

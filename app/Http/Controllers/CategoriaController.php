@@ -41,6 +41,8 @@ class CategoriaController extends Controller {
             $categoria = new Categoria();
         }
 
+        if ($categoria == null) { return redirect()->route('categoria_lista'); }
+
         return view('categoria.cadastro', [
             'categoria' => $categoria
         ]);
@@ -58,6 +60,8 @@ class CategoriaController extends Controller {
             $categoria = new Categoria();
         }
 
+        if ($categoria == null) { return redirect()->route('categoria_lista'); }
+
         $categoria->nome = $req->input('nome');
         $categoria->save();
 
@@ -66,6 +70,9 @@ class CategoriaController extends Controller {
 
     public function excluir($id){
         $categoria = Categoria::find($id);
+
+        if ($categoria == null) { return redirect()->route('categoria_lista'); }
+
         $categoria->delete();
         return redirect()->route('categoria_lista');
     }

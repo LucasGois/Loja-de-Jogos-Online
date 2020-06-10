@@ -12,16 +12,6 @@
                         <div class="col-12 col-md-5">
                             <h2><b>Histórico</b></h2>
                         </div>
-                        
-                        <div class="col">
-                            <form>
-                                <div class="input-group">
-                                    <input type="hidden" name="ordem" value="{{ $ordem }}">
-                                    <input class="btn btn-primary" type="submit" value="Buscar">
-                                    <input class="form-control" type="text" name="busca" autocomplete="off">
-                                </div>
-                            </form>
-                        </div>
                     </div>
                     <div class="row">
 
@@ -33,10 +23,10 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="text-center"><a href="?ordem=id&busca={{ $busca }}">ID</a></th>
-                                <th class="text-center"><a href="?ordem=endereco&busca={{ $busca }}">Endereço</a></th>
-                                <th class="text-center"><a href="?ordem=total&busca={{ $busca }}">Total</a></th>
-                                <th class="text-center"><a href="?ordem=data&busca={{ $busca }}">Data</a></th>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Endereço</th>
+                                <th class="text-center">Total</th>
+                                <th class="text-center">>Data</th>
                                 <th class="text-center">Ações</th>
                             </tr>
                         </thead>

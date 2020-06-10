@@ -12,9 +12,7 @@ class CategoriasProdutoController extends Controller {
     public function lista($id_produto) {
         $produto = Produto::find($id_produto);
 
-        if ($produto == null) {
-            return redirect()->route('produto_lista');
-        }
+        if ($produto == null) { return redirect()->route('produto_lista'); }
 
         return view('categorias_produto.lista', [
             'produto' => $produto,
@@ -25,9 +23,7 @@ class CategoriasProdutoController extends Controller {
     public function cadastro($id_produto) {
         $produto = Produto::find($id_produto);
 
-        if ($produto == null) {
-            return redirect()->route('produto_lista');
-        }
+        if ($produto == null) { return redirect()->route('produto_lista'); }
 
         $categorias = Categoria::all();
 
@@ -40,9 +36,7 @@ class CategoriasProdutoController extends Controller {
     public function salvar(Request $req, $id_produto) {
         $produto = Produto::find($id_produto);
 
-        if ($produto == null) {
-            return redirect()->route('produto_lista');
-        }
+        if ($produto == null) { return redirect()->route('produto_lista'); }
 
         $categoriasProduto = new CategoriasProdutos();
         $categoriasProduto->id_produto = $id_produto;
@@ -55,9 +49,7 @@ class CategoriasProdutoController extends Controller {
     public function excluir($id_produto, $id_categoria){
         $produto = Produto::find($id_produto);
 
-        if ($produto == null) {
-            return redirect()->route('produto_lista');
-        }
+        if ($produto == null) { return redirect()->route('produto_lista'); }
 
         $categoriasProduto = new CategoriasProdutos();
         $categoriasProduto = $categoriasProduto->where('id_produto', '=', $id_produto);

@@ -12,9 +12,7 @@ class FotosProdutoController extends Controller {
     public function lista($id_produto) {
         $produto = Produto::find($id_produto);
 
-        if ($produto == null) {
-            return redirect()->route('produto_lista');
-        }
+        if ($produto == null) { return redirect()->route('produto_lista'); }
 
         return view('fotos_produto.lista', [
             'produto' => $produto,
@@ -25,9 +23,7 @@ class FotosProdutoController extends Controller {
     public function cadastro($id_produto) {
         $produto = Produto::find($id_produto);
 
-        if ($produto == null) {
-            return redirect()->route('produto_lista');
-        }
+        if ($produto == null) { return redirect()->route('produto_lista'); }
 
         $fotos = FotoProduto::all();
 
@@ -40,9 +36,7 @@ class FotosProdutoController extends Controller {
     public function salvar(Request $req, $id_produto) {
         $produto = Produto::find($id_produto);
 
-        if ($produto == null) {
-            return redirect()->route('produto_lista');
-        }
+        if ($produto == null) { return redirect()->route('produto_lista'); }
 
         $nome_arquivo = $produto->id . " " . $produto->id . " " . $produto->nome;
 
@@ -67,9 +61,7 @@ class FotosProdutoController extends Controller {
     public function excluir($id_produto, $id_foto){
         $produto = Produto::find($id_produto);
 
-        if ($produto == null) {
-            return redirect()->route('produto_lista');
-        }
+        if ($produto == null) { return redirect()->route('produto_lista'); }
 
         FotoProduto::find($id_foto)->delete();
 
