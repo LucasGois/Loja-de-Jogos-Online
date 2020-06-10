@@ -22,7 +22,7 @@ class VendaController extends Controller
         
         foreach ($produtos as $key => $produto) {
             if($produto->id == $id_produto){
-                return back()->withInput();
+                return redirect()->route('venda_lista');
             }
         }
 
@@ -30,7 +30,7 @@ class VendaController extends Controller
 
         session()->put('produtos', $produtos);
 
-        return back()->withInput();
+        return redirect()->route('venda_lista');
     }
 
     /**

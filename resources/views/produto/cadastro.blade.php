@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('produto_salvar', $produto->id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('produto_salvar', $produto->id) }}">
                         @csrf
 
                         <div class="form-group row">
@@ -78,7 +78,7 @@
 
                                 <div class="col text-center">
                                     <a href="{{ route('fotos_produto_lista', $produto->id) }}" class="btn btn-sm btn-primary">
-                                        <h5>Imagens</h5>
+                                        <h5>Fotos</h5>
                                     </a>
                                 </div>
 

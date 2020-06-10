@@ -53,8 +53,12 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/produto/salvar/{id?}', 'ProdutoController@salvar')->name('produto_salvar');
     Route::get('/produto/excluir/{id}', 'ProdutoController@excluir')->name('produto_excluir');
 
-    // Fotos Produto
+    // fotos_produto Produto
     Route::get('/fotos_produto/lista/{id_produto}', 'FotosProdutoController@lista')->name('fotos_produto_lista');
+    Route::get('/fotos_produto/cadastro/{id_produto}', 'FotosProdutoController@cadastro')->name('fotos_produto_cadastro');
+    Route::post('/fotos_produto/salvar/{id_produto}', 'FotosProdutoController@salvar')->name('fotos_produto_salvar');
+    Route::get('/fotos_produto/excluir/{id_produto}/{id_foto}', 'FotosProdutoController@excluir')->name('fotos_produto_excluir');
+
 
     // Categorias Produto
     Route::get('/categorias_produto/lista/{id_produto}', 'CategoriasProdutoController@lista')->name('categorias_produto_lista');
