@@ -19,7 +19,7 @@ class CreateEnderecos extends Migration
             $table->unsignedBigInteger('id_cliente');
             $table->string('descricao', 250);
             $table->string('logradouro', 250);
-            $table->string('numero', 4);
+            $table->string('numero', 5);
             $table->string('bairro', 250);
             $table->timestamps();
             $table->softDeletes(); 

@@ -57,7 +57,6 @@ class ProdutoController extends Controller{
         $req->validate([
             'nome' => 'required|min:3',
             'valor' => 'required|numeric',
-            
         ]);
 
         if($id > 0){

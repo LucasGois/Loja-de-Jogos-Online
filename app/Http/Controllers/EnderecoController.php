@@ -63,6 +63,13 @@ class EnderecoController extends Controller
 
     public function salvar(Request $req, $id = 0) {
 
+        $req->validate([
+            'descricao' => 'required|min:3',
+            'logradouro' => 'required|min:3',
+            'numero' => 'required|min:1|max:4',
+            'bairro' => 'required|min:3',
+        ]);
+
         if($id > 0){
             $endereco = Endereco::find($id);
         } else {
