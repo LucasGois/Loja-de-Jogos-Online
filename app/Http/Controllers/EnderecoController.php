@@ -42,6 +42,10 @@ class EnderecoController extends Controller
         if($id > 0){
             // Alterar
             $endereco = Endereco::find($id);
+
+            $cliente = (DB::table('clientes')->where('id_user', Auth::user()->id)->first());
+            if($cliente->id != $endereco->cliente->id){ return redirect()->route('endereco_lista'); }
+
         } else {
             // Adicionar
             $endereco = new Endereco();
@@ -59,10 +63,6 @@ class EnderecoController extends Controller
 
     public function salvar(Request $req, $id = 0) {
 
-        $req->validate([
-            'descricao' => 'required|min:15'
-        ]);
-
         if($id > 0){
             $endereco = Endereco::find($id);
         } else {
@@ -72,9 +72,9 @@ class EnderecoController extends Controller
         if ($endereco == null) { return redirect()->route('endereco_lista'); }
         
         $id_cidade = $req->input('id_cidade');
-        $id_cliente = (DB::table('clientes')->where('id_user', Auth::user()->id)->first())->id;
+        $cliente = (DB::table('clientes')->where('id_user', Auth::user()->id)->first());
 
-        $endereco->id_cliente = $id_cliente;
+        $endereco->id_cliente = $cliente->id;
         $endereco->id_cidade = $id_cidade;
         $endereco->descricao = $req->input('descricao');
         $endereco->logradouro = $req->input('logradouro');
