@@ -48,6 +48,11 @@
                                 <a href="{{ route('plataforma_lista') }}" class="btn btn-outline-secondary btn-lg btn-block">Plataforma</a>
                             </div>
 
+                            <!-- Integracao CacaPay -->
+                            <div class="col col-md-12 text-right">
+                                <a href="{{ route('configuracao_integracao_cadastro', 1) }}" class="btn btn-outline-secondary btn-lg btn-block">CaçaPay</a>
+                            </div>
+
                         @endif
 
                     </div>

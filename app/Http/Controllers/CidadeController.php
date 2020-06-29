@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 use App\Cidade;
 
-class CidadeController extends Controller
-{
+class CidadeController extends Controller {
+    
     public function lista(Request $req) {
         $cidades = new Cidade();
 
@@ -74,4 +74,5 @@ class CidadeController extends Controller
         $cidade->delete();
         return redirect()->route('cidade_lista');
     }
+
 }

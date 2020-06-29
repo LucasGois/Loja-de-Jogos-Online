@@ -100,7 +100,17 @@
                     @endif
                 </div>
 
+                <span class="invalid-feedback" role="alert">
+                    <strong>teste</strong>
+                </span>
+
             </div>
+
+            @error('nome')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
 
         </div>
     </div>

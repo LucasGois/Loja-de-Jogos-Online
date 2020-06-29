@@ -11,7 +11,7 @@ class ProdutoSeeder extends Seeder {
             'descricao' => 'GOTY',
             'estoque' => 10,
             'slug' => 'top-mano',
-            'valor' => 199.99,
+            'valor' => 0.02,
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);
@@ -21,7 +21,7 @@ class ProdutoSeeder extends Seeder {
             'descricao' => 'GOTY II',
             'estoque' => 10,
             'slug' => 'top-top-mano',
-            'valor' => 199.99,
+            'valor' => 0.01,
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
         ]);

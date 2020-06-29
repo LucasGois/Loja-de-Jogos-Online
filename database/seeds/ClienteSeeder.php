@@ -18,7 +18,7 @@ class ClienteSeeder extends Seeder {
         ]);
         DB::table('clientes')->insert([
             'id_user' => 2,
-            'cpf' => '320.186.709-81',
+            'cpf' => '320.186.709-82',
             'rg' => '49.887.408-5',
             'data_nascimento' => '1998-04-03',
             'telefone' => '49 98508-1860',

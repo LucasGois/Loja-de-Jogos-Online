@@ -78,4 +78,8 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/plataformas_produto/salvar/{id_produto}', 'PlataformasProdutoController@salvar')->name('plataformas_produto_salvar');
     Route::get('/plataformas_produto/excluir/{id_produto}/{id_categoria}', 'PlataformasProdutoController@excluir')->name('plataformas_produto_excluir');
 
+    Route::get('/configuracao', 'ConfiguracaoController@integracao')->name('configuracao_integracao');
+    Route::get('/configuracao/{id_integracao}', 'ConfiguracaoController@cadastro')->name('configuracao_integracao_cadastro');
+    Route::post('/configuracao/{id_integracao}', 'ConfiguracaoController@salvar')->name('configuracao_integracao_salvar');
+
 });

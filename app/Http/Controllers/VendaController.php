@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Cliente;
+use App\Integracao;
 use App\Produto;
 use App\ProdutoVenda;
 use App\Venda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class VendaController extends Controller
 {
@@ -101,7 +103,7 @@ class VendaController extends Controller
 
         if ($venda == null) { return redirect()->route('venda_lista'); }
 
-        $id_cliente = (DB::table('clientes')->where('id_user', Auth::user()->id)->first())->id;
+        $cliente = (DB::table('clientes')->where('id_user', Auth::user()->id)->first());
         $id_endereco = $req->input('id_endereco') ?? 0;
 
         if($id_endereco === 0){
@@ -110,7 +112,9 @@ class VendaController extends Controller
 
         $produtos = session()->get('produtos');
 
-        $venda->id_cliente = $id_cliente;
+        DB::beginTransaction();
+
+        $venda->id_cliente = $cliente->id;
         $venda->id_endereco = $id_endereco;
         $venda->total = $req->input('total');
         $venda->save();
@@ -124,8 +128,26 @@ class VendaController extends Controller
             $produtosVenda->save();
         }
 
-        $this->limpar();
+        $email = $cliente->cpf.'@gmail.com';
 
-        return redirect()->route('historico_lista');
+        $integracao = Integracao::find(1);
+        $response = Http::post($integracao->url, [
+            'token' => $integracao->token,
+            'cpf' => $cliente->cpf,
+            'valor' => $venda->total,
+            'cliente' => Auth::user()->name,
+            'senha' => $cliente->cpf,
+            'email' => $email
+        ]);
+
+        if ($response->successful()) {
+            DB::commit();
+            $this->limpar();
+            return redirect()->route('historico_lista');
+
+        } else {
+            DB::rollBack();
+            return back();
+        }
     }
 }
