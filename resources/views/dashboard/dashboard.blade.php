@@ -14,11 +14,23 @@
                             <h2><b>Dashboards</b></h2>
 
                             <div class="row">
-                                <div class="col-md-12" id="curve_chart">
+                                <div class="col-md-2">
 
                                 </div>
-                                <div class="col-md-12" id="columnchart_values">
+                                <div class="col-md-8" id="curve_chart">
+
+                                </div>
+                                <div class="col-md-2">
+
+                                </div>
+                                <div class="col-md-2">
+
+                                </div>
+                                <div class="col-md-8" id="columnchart_values">
                            
+
+                                </div>
+                                <div class="col-md-2">
 
                                 </div>
                               
