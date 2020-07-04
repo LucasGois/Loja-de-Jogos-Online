@@ -35,6 +35,8 @@
         }
     </style>
 
+    @yield('script')
+
 </head>
 <body>
     <div id="app">

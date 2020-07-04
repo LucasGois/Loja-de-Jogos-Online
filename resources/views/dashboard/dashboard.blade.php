@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-10">
@@ -9,76 +10,174 @@
 
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-12 col-md-5">
-                            <h2>Lista de <b>Enderecos</b></h2>
-                        </div>
-                        
-                        <div class="col">
-                            <form>
-                                <div class="input-group">
-                                    <input type="hidden" name="ordem" value="{{ $ordem }}">
-                                    <input class="btn btn-primary" type="submit" value="Buscar">
-                                    <input class="form-control" type="text" name="busca" autocomplete="off">
+                        <div class="col-12">
+                            <h2><b>Dashboards</b></h2>
+
+                            <div class="row">
+                                <div class="col-md-2">
+
                                 </div>
-                            </form>
-                        </div>
-                        
-                        <div class="col col-md-2 text-right">
-                            <a href="{{ route('endereco_cadastro') }}" class="btn btn-success">Adicionar</a>
-                        </div>
-                    </div>
-                    <div class="row">
+                                <div class="col-md-8" id="curve_chart">
+                                </div> 
 
-                    </div>
-                </div>
-                <div class="card-body">
-                
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="text-center"><a href="?ordem=id_cidade&busca={{ $busca }}">Cidade</a></th>
-                                <th class="text-center"><a href="?ordem=id&busca={{ $busca }}">ID</a></th>
-                                <th class="text-center"><a href="?ordem=descricao&busca={{ $busca }}">Descrição</a></th>
-                                <th class="text-center"><a href="?ordem=logradouro&busca={{ $busca }}">Logradouro</a></th>
-                                <th class="text-center"><a href="?ordem=numero&busca={{ $busca }}">Número</a></th>
-                                <th class="text-center"><a href="?ordem=bairro&busca={{ $busca }}">Bairro</a></th>
-                                <th class="text-center">Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($enderecos as $endereco)
-                                <tr>
-                                    <th class="text-center">{{ $endereco->cidade->nome }}</td>
-                                    <th class="text-center">{{ $endereco->id }}</td>
-                                    <td class="text-center">{{ $endereco->descricao }}</td>
-                                    <td class="text-center">{{ $endereco->logradouro }}</td>
-                                    <td class="text-center">{{ $endereco->numero }}</td>
-                                    <td class="text-center">{{ $endereco->bairro }}</td>
-                                    <td class="text-center">
-                                        <a href="{{ route('endereco_cadastro', $endereco->id) }}" class="btn btn-sm btn-warning">Alterar</a>
-                                        <a class="btn btn-sm btn-danger" href="#" onclick="exclui( {{ $endereco->id }} )">Excluir</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                <div class="col-md-2">
+
+                                </div>
+                                <div class="col-md-2">
+
+                                </div>
+                                <div class="col-md-8" id="columnchart_values">
+                                
+                                </div>
+
+                                <div class="col-md-2">
+
+                                </div>
+                                <div class="col-md-2">
+
+                                </div>
+                                <div class="col-md-8" id="donutchart">
+                                </div>
+
+                                <div class="col-md-2">
+
+                                </div>
+                                <div class="col-md-2">
+
+                                </div>
+                                <div class="col-md-8" id="piechart_3d">
+                                </div>
                     
-                    {{ $enderecos->links() }}
-
+                               
+                              
+                            </div>  
+                            
+                        </div>   
+                        </div>          
+                    </div>
                 </div>
+            
 
             </div>
 
         </div>
     </div>
-</div>
 
-<script>
-	function exclui(id){
-		if (confirm("Deseja excluir o endereço de id: " + id + "?")){
-			location.href = "/endereco/excluir/" + id;
-		}
-	}
-</script>
+                        
+    
+
+
+@endsection
+
+@section('script')
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+
+            var data = google.visualization.arrayToDataTable([
+                ['Hora', 'Média Vendas'],
+                @foreach ($vendas_hora as $v)
+                    [{{ $v->hora }},  {{ $v->media }}],
+                @endforeach
+            ]);
+
+            var options = {
+                title: 'Média de Vendas por Hora',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };           
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                chart.draw(data, options);
+            }
+            </script>
+
+                
+
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                google.charts.load("current", {packages:['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
+
+
+                function drawChart() {
+
+                     
+                  var data = google.visualization.arrayToDataTable([
+                    ['Dia', 'Qtd Vendas'],
+                            @foreach ($vendas_mes as $v)
+                            [{{ $v->mes }},  {{ $v->quantidade }}],
+                            @endforeach
+                  ]);
+
+                  var view = new google.visualization.DataView(data);
+                        view.setColumns([0,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       1]);
+
+                  var options = {
+                    title: "Quantidade de Vendas por Mês",
+                    bar: {groupWidth: "95%"},
+                    legend: { position: "none" },
+                  };
+                  var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+                  chart.draw(view, options);
+              }
+            </script>
+
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+              google.charts.load("current", {packages:["corechart"]});
+              google.charts.setOnLoadCallback(drawChart);
+              function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                  ['Produto', 'Vendas por Produto'],
+                            @foreach ($vendas_por_produto as $v)
+                            ["{{ $v->produtos }}",  {{ $v->somatorio }}],
+                            @endforeach
+                ]);
+
+                
+
+                var options = {
+                  title: 'Percentual de vendas por Produto',
+                  pieHole: 0.4,
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                chart.draw(data, options);
+              }
+            </script>
+
+
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+              google.charts.load("current", {packages:["corechart"]});
+              google.charts.setOnLoadCallback(drawChart);
+              function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Clientes Cadastrados', 'Período'],
+                            @foreach ($quantidade_clientes as $c)
+                            ["{{ $c->admin }}", {{ $c->quantidade }}],
+                            @endforeach
+                 
+                ]);
+
+                var options = {
+                  title: 'Total de Usuários Cadastrados Até o momento',
+                  is3D: true,
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                chart.draw(data, options);
+              }
+            </script> 
 
 @endsection
