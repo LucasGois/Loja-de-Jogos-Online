@@ -36,6 +36,9 @@ Route::middleware(['auth'])->group(function(){
 
 Route::middleware(['admin'])->group(function(){
 
+    //Dashboard
+    Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
+
     // Cidade
     Route::get('/cidade/lista', 'CidadeController@lista')->name('cidade_lista');
     Route::get('/cidade/cadastro/{id?}', 'CidadeController@cadastro')->name('cidade_cadastro');
