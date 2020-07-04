@@ -18,8 +18,8 @@
 
                                 </div>
                                 <div class="col-md-8" id="curve_chart">
+                                </div> 
 
-                                </div>
                                 <div class="col-md-2">
 
                                 </div>
@@ -27,12 +27,28 @@
 
                                 </div>
                                 <div class="col-md-8" id="columnchart_values">
-                           
+                                
+                                </div>
+
+                                <div class="col-md-2">
 
                                 </div>
                                 <div class="col-md-2">
 
                                 </div>
+                                <div class="col-md-8" id="donutchart">
+                                </div>
+
+                                <div class="col-md-2">
+
+                                </div>
+                                <div class="col-md-2">
+
+                                </div>
+                                <div class="col-md-8" id="piechart_3d">
+                                </div>
+                    
+                               
                               
                             </div>  
                             
@@ -115,6 +131,53 @@
                   chart.draw(view, options);
               }
             </script>
-                 
 
-    @endsection
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+              google.charts.load("current", {packages:["corechart"]});
+              google.charts.setOnLoadCallback(drawChart);
+              function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                  ['Produto', 'Vendas por Produto'],
+                            @foreach ($vendas_por_produto as $v)
+                            ["{{ $v->produtos }}",  {{ $v->somatorio }}],
+                            @endforeach
+                ]);
+
+                
+
+                var options = {
+                  title: 'Percentual de vendas por Produto',
+                  pieHole: 0.4,
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                chart.draw(data, options);
+              }
+            </script>
+
+
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+              google.charts.load("current", {packages:["corechart"]});
+              google.charts.setOnLoadCallback(drawChart);
+              function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Clientes Cadastrados', 'Período'],
+                            @foreach ($quantidade_clientes as $c)
+                            ["{{ $c->admin }}", {{ $c->quantidade }}],
+                            @endforeach
+                 
+                ]);
+
+                var options = {
+                  title: 'Total de Usuários Cadastrados Até o momento',
+                  is3D: true,
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                chart.draw(data, options);
+              }
+            </script> 
+
+@endsection
