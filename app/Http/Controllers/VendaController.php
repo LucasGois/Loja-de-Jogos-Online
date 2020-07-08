@@ -133,7 +133,7 @@ class VendaController extends Controller
         $integracao = Integracao::find(1);
         $response = Http::post($integracao->url, [
             'token' => $integracao->token,
-            'cpf' => $cliente->cpf,
+            'cpf' => preg_replace("/[^0-9]/", "", $cliente->cpf),
             'valor' => $venda->total,
             'cliente' => Auth::user()->name,
             'senha' => $cliente->cpf,
@@ -143,6 +143,8 @@ class VendaController extends Controller
         if ($response->successful()) {
             DB::commit();
             $this->limpar();
+            $venda->status_pagamento = 'PAGO';
+            $venda->save();
             return redirect()->route('historico_lista');
 
         } else {

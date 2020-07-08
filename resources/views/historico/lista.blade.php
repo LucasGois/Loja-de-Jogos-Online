@@ -27,6 +27,7 @@
                                 <th class="text-center">Endereço</th>
                                 <th class="text-center">Total</th>
                                 <th class="text-center">Data</th>
+                                <th class="text-center">Status</th>
                                 <th class="text-center">Ações</th>
                             </tr>
                         </thead>
@@ -37,6 +38,7 @@
                                     <td class="text-center">{{ $venda->endereco->descricao }}</td>
                                     <td class="text-center">{{ number_format($venda->total, 2, '.', '') }}</td>
                                     <td class="text-center">{{ date("d/m/Y", strtotime("$venda->created_at")) }}</td>
+                                    <td class="text-center">{{ $venda->status_pagamento }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('historico_detalhes', $venda->id) }}" class="btn btn-sm btn-primary">Detalhes</a>
                                     </td>
